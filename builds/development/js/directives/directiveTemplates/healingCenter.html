@@ -1,0 +1,75 @@
+
+
+
+<div class="container-fluid full" ng-class="{'item-horizontal': isVertical()}"> 
+
+<!--style="background-image: url(https://vineyardsandbox.s3.amazonaws.com/Rob/healing-center/desktop.png)"-->
+ <div class="display-images">
+  <img ng-src="https://vineyardsandbox.s3.amazonaws.com/Rob/healing-center/{{device}}.png"/>
+  <div class="device-selection">
+     
+      <button class="btn" 
+      ng-class="{'active': device === 'desktop'}"
+      ng-click="isDesktop()">Desktop</button>
+      
+      
+      <button class="btn" 
+      ng-class="{'active': device === 'tablet'}"
+      ng-click="isTablet()">Tablet</button>
+      
+      
+      <button class="btn" 
+      ng-class="{'active': device === 'phone'}"
+      ng-click="isPhone()">Phone</button>
+      
+      <button class="btn"><a href="http://www.healingcentercincinnati.org"><i class="fa fa-link"></i></a></button>
+      
+    </div>
+  <div>
+
+  <div class="description">
+    <p>The Healing Center of Cincinnati helps people in times of need by providing groceries, job placement and much more. The site redesign involved a good amount of client interaction and input.</p>
+  </div>
+  
+  
+  <div class="subHead">
+    <h1>Context</h1>
+    <p>The Healing Center was in need of an updated site that matched the spirit of the organization and worked responsively. The prior site appeared dated and was a burden on the staff to manage and update.</p>
+    
+  </div>
+  
+  
+  <div class="subHead">
+    <h1>Scope</h1>
+    
+    <div class="additional"><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/healing-center/admin.png" alt>
+    <div class="additonal-caption">
+    <p>A custom admin build was created for easy maintenance and updates. A REST API was created using a mongoDB database and node.js backend.</p>
+    </div>
+    </div>
+    
+    <p>This project consisted of a discovery phase, design and development. I carried out the entire project which spanned 9 months and resulted in the responsive design and development of the site. The site includes a custom CMS build and a Spanish to English toggle (currrently waiting on Spanish translation of content) and many additional features. 
+    </p>
+    <p>
+    At project completion, the site checked in at just under 10,000 lines of code, an improvement of over 100,000 which will make for a much more maintainable site down the road. 99% of the content is also editable through the custom built CMS.</p>
+    
+  </div>
+  
+  
+   <div id="technology" class="subHead">
+    <h1>Technology</h1>
+    <div class="gallery">
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/angularjs.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/nodejs-logo.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/mongodb.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/sass.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/susy.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/compass-logo.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/gulp.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/git-logo.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/heroku-Logo.png" alt></div>
+    </div>
+  </div>
+  
+
+</div>
