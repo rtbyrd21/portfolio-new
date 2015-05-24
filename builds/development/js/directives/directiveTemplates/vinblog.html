@@ -3,9 +3,9 @@
 
 <div class="container-fluid full" ng-class="{'item-horizontal': isVertical()}"> 
 
-<!--style="background-image: url(https://vineyardsandbox.s3.amazonaws.com/Rob/healing-center/desktop.png)"-->
+
  <div class="display-images">
-  <img ng-src="https://vineyardsandbox.s3.amazonaws.com/Rob/healing-center/{{device}}.png"/>
+  <img ng-src="https://vineyardsandbox.s3.amazonaws.com/Rob/blog/{{device}}.png"/>
   <div class="device-selection">
      
       <button class="btn" 
@@ -22,28 +22,27 @@
       ng-class="{'active': device === 'phone'}"
       ng-click="isPhone()">Phone</button>
       
-      <a target="blank" href="http://www.healingcentercincinnati.org"><button class="btn"><i class="fa fa-link"></i></button></a>
+      <a target="blank" href="http://blog.vineyardcincinnati.com"><button class="btn"><i class="fa fa-link"></i></button></a>
       
     </div>
   <div>
 
   <div class="description">
-    <p>The Healing Center of Cincinnati helps people in times of need by providing groceries, job placement and much more. The site redesign involved a good amount of client interaction and input.</p>
+    <p>This website was created as part of a yearly outreach program done by Vineyard Cincinnati. Thousands of free bottles of water were handed out with "smallthingsgreatlove.com" printed on them. The website is meant to serve as a place for more information as well as a place to share stories.</p>
   </div>
   
 <div class="wrapper">  
   
   <div class="subHead">
     <h1>Context</h1>
-    <p>The Healing Center was in need of an updated site that matched the spirit of the organization and worked responsively. The prior site appeared dated and was a burden on the staff to manage and update.</p>
+    <p>smallthingsgreatlove.com was in need of a re-design. The site was very outdated in appearance and did not offer clear enough content and site architecture to be very useful. The original site was also created before smartphones or modern browsers. A responsive, engaging, well structured hierarchy was the overarching goal.</p>
     
   </div>
   
-  
-<div class="row">  
-  
+  <div class="row">
   <div class="subHead col-md-8">
-    <h1>Scope</h1>   
+    <h1>Scope</h1>
+    
     <p>This project consisted of a discovery phase, design and development. I carried out the entire project which spanned 9 months and resulted in the responsive design and development of the site. The site includes a custom CMS build and a Spanish to English toggle (currrently waiting on Spanish translation of content) and many additional features. 
     </p>
     <p>
@@ -51,48 +50,42 @@
     
     <h1 class="float-margin">Responsibilites</h1>
     <ul>
-      <li>Discovery</li>
       <li>UX design</li>
-      <li>UI design and development</li>
-      <li>NoSQL database design</li>
-      <li>Node.js REST API back-end build</li>
+      <li>MySQL Database design</li>
       <li>Custom CMS build</li>
-      <li>Angular.js front-end build</li>
-      <li>Pre-render.io SEO setup</li>
+      <li>Responsive Front-end on Foundation</li>
       <li>Heroku hosting</li>
     </ul>
   </div>
 
 
-
 <div class="sidebar col-md-4">
-
-<div class="additional"><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/healing-center/admin.png" alt>
+<div class="additional"><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/blog/admin.png" alt>
     <div class="additonal-caption">
-    <p>A custom admin build was created for easy maintenance and updates. A REST API was created using a mongoDB database and node.js backend.</p>
+    <p>A custom admin build was created to review stories submitted and add them to the site. The CMS performs CRUD operations through object-oriented PHP with a MYSQL database.</p>
     </div>
     </div>
     
-    
-  <div class="additional"><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/healing-center/archive.png" alt>
-    <div class="additonal-caption">
-    <p>The prior site was non-responsive and hard to navigate, content was lengthy and non-direct. The site was also very difficult to update. The back-end was merged into Vineyard Cincinnati's but only partially completed, many records were updated directly in the database or hard-coded.</p>
-    </div>
-    </div>  
-    
-    
-    
-  </div>
-    
-</div>
  
-
+</div> 
+ 
+</div>
   
    <div id="technology" class="subHead">
     <h1>Technology</h1>
     <div class="gallery">
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/angularjs.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/nodejs-logo.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/django.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/python.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/mysql.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/html5.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/css3.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/jquery.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/susy.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/gulp.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/git-logo.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/github.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/heroku-Logo.png" alt></div>
+<!--
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/npm.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/bower.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/mongodb.png" alt></div>
@@ -101,18 +94,15 @@
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/compass-logo.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/gulp.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/git-logo.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/github.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/heroku-Logo.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/googleapi.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/jquery.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/html5.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/css3.png" alt></div>
+      
+-->
     </div>
   </div>
   
 <div id="live-view" class="subHead">
     <h1>Live&nbsp;View</h1>  
-   <iframe src="http://www.healingcentercincinnati.org" width="100%" height="500">
+   <iframe target='_top' src="http://blog.vineyardcincinnati.com/" width="100%" height="500">
   <p>Your browser does not support iframes.</p>
 </iframe>
 </div>  

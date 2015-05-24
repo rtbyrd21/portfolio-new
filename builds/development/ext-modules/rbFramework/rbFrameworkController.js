@@ -10,7 +10,6 @@ angular.module('rbFramework')
     $scope.$on('menu-item-selected-event', function(evt, data){
         $scope.routeString = data.route;
         $scope.routeTitle = data.title;
-        console.log(data);
         $location.path(data.route);
         checkWidth();
         broadcastMenuState();

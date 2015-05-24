@@ -2,27 +2,39 @@
 angular.module('app').config(function($routeProvider){
   var routes = [
     {
-      url: '/healingcenter',
+      url: '/healing-center',
       config: {
         template: '<rb-healing-center image="healing-center"></rb-healing-center>'
       }
     },
     {
-      url: '/healingcenter?scrollTo=technology',
+      url: '/nigeria',
       config: {
-        template: '<rb-healing-center image="healing-center"></rb-healing-center>'
+        template: '<rb-nigeria></rb-nigeria>'
       }
     },
     {
-      url: '/locations',
+      url: '/smallthings',
       config: {
-        template: '<rb-locations></rb-locations>'
+        template: '<rb-small-things></rb-small-things>'
       }
     },
     {
-      url: '/guides',
+      url: '/vineyard-blog',
       config: {
-        template: '<rb-guides></rb-guides>'
+        template: '<rb-vin-blog></rb-vin-blog>'
+      }
+    },
+    {
+      url: '/visible-language',
+      config: {
+        template: '<rb-visible-language></rb-visible-language>'
+      }
+    },
+    {
+      url: '/',
+      config: {
+        template: '<rb-home></rb-home>'
       }
     }
   ];
@@ -30,5 +42,5 @@ angular.module('app').config(function($routeProvider){
   routes.forEach(function(route){
     $routeProvider.when(route.url, route.config);
   });
-  $routeProvider.otherwise({redirectTo: '/healingcenter'});
+  $routeProvider.otherwise({redirectTo: '/'});
 });

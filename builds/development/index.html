@@ -37,8 +37,11 @@
   <script src="js/app.js"></script>
   <script src="js/appRouteConfig.js"></script>
    <script src="js//directives/rbHealingCenterDirective.js"></script>
-  <script src="js//directives/rbGuidesDirective.js"></script>
-  <script src="js//directives/rbLocationsDirective.js"></script>
+  <script src="js//directives/rbSmallThingsDirective.js"></script>
+  <script src="js//directives/rbNigeriaDirective.js"></script>
+  <script src="js//directives/rbVinBlogDirective.js"></script>
+  <script src="js//directives/rbHomeDirective.js"></script>
+  <script src="js//directives/rbVisibleLanguageDirective.js"></script>
   
 </head>
 <body class="container-fluid">
@@ -47,17 +50,13 @@
                 subtitle="design & development"
                 icon-file="">
       <rb-menu>
-        <rb-menu-group label="Web" icon="">
-          <rb-menu-group label="Healing Center" icon="" route="healingcenter"></rb-menu-item>
-                <rb-menu-item label="Scope" route="healingcenter##scope"></rb-menu-item>
-                <rb-menu-item label="Responsibilites" route="healingcenter##responsibilities"></rb-menu-item>
-                <rb-menu-item label="Technical" route="healingcenter?scrollTo=technology"></rb-menu-item>
-
-            </rb-menu-group>
-          <rb-menu-item label="Small Things" icon="" route="smallThings"></rb-menu-item>
+        <rb-menu-group label="Web" icon="" route="">
+          <rb-menu-item label="Healing Center" icon="" route="healing-center">
+            </rb-menu-item>
+          <rb-menu-item label="Small Things" icon="" route="smallthings"></rb-menu-item>
           <rb-menu-item label="H2O Nigeria" icon="" route="nigeria"></rb-menu-item>
-          <rb-menu-item label="Vineyard Blog" icon="" route="vineyardBlog"></rb-menu-item>
-          <rb-menu-item label="Visible Language" icon="" route="visibleLanguage"></rb-menu-item>
+          <rb-menu-item label="Vineyard Blog" icon="" route="vineyard-blog"></rb-menu-item>
+          <rb-menu-item label="Visible Language" icon="" route="visible-language"></rb-menu-item>
           <rb-menu-item label="ESH.com" icon="" route="esh"></rb-menu-item>
         </rb-menu-group>
         
