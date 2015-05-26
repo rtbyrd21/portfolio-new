@@ -37,14 +37,6 @@ angular.module('rbMenu').directive('rbMenuGroup', function(){
           };
         
         
-        el.on('click', function(evt){
-        evt.stopPropagation();
-        evt.preventDefault();
-        scope.$apply(function(){
-          ctrl.setActiveElement(el);
-          ctrl.setRoute(scope.route, scope.label);
-        });
-      });
         
       }
   }

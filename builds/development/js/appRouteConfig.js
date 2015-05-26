@@ -32,6 +32,48 @@ angular.module('app').config(function($routeProvider){
       }
     },
     {
+      url: '/illumination-site',
+      config: {
+        template: '<rb-illumination-site></rb-illumination-site>'
+      }
+    },
+    {
+      url: '/about',
+      config: {
+        template: '<rb-about></rb-about>'
+      }
+    },
+    {
+      url: '/tempo-vices',
+      config: {
+        template: '<rb-tempo-vices></rb-tempo-vices>'
+      }
+    },
+    {
+      url: '/tempo-future',
+      config: {
+        template: '<rb-tempo-future></rb-tempo-future>'
+      }
+    },
+    {
+      url: '/tempo-generation',
+      config: {
+        template: '<rb-tempo-generation></rb-tempo-generation>'
+      }
+    },
+    {
+      url: '/coffey-communications',
+      config: {
+        template: '<rb-coffey-communications></rb-coffey-communications>'
+      }
+    },
+    {
+      url: '/summit-media',
+      config: {
+        template: '<rb-summit-media></rb-summit-media>'
+      }
+    },
+    {
       url: '/',
       config: {
         template: '<rb-home></rb-home>'

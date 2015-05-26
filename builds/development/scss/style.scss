@@ -36,11 +36,8 @@ li{
     -moz-background-size: cover;
   }
   &.home{
-//  background: url('https://vineyardsandbox.s3.amazonaws.com/Rob/hero_sins.jpg');
-//  background-size: 100% 100%;
-//    background-repeat: no-repeat;
-//    background-size: cover;
-//    -moz-background-size: cover;  
+  width:80%; 
+  margin-top: 50px;
   }
   img{
     width:100%;
@@ -99,14 +96,31 @@ li{
 
 .right-side-controls{
   line-height: 60px;
+  position: relative;
 }
 
-.right-side-controls > div {
+.right-side-controls > ul {
   text-align: center;
+  display: inline-block;
+  position: absolute;
+  top:10px;
+  a{
+    color:white;
+    cursor: pointer;
+    margin-right: 10px;
+    text-decoration: none;
+    &:hover{
+      border-bottom: 3px solid white;
+    }
+  }
+  li{
+    display: inline-block;
+    color:white;
+  }
 }
 
 @media screen and(min-width: 768px){
-  .right-side-controls > div {
+  .right-side-controls > ul {
     text-align: right;
   }
   .logo-area{
@@ -123,10 +137,14 @@ li{
   padding-left: 0;
 }
 
+rb-menu-group > li{
+  text-transform: uppercase;
+  font-weight: 400;
+}
 
 .menu-area-vertical{
   float:left;
-  width: 200px;
+  width: 230px;
   min-height: 100vh;
   padding-top: 30px
 }
@@ -164,6 +182,7 @@ li{
   display: inline-block;
   width:90%;
   padding-left: 16px;
+  font-size: .9em;
 }
 
 .selectable-item:hover{
@@ -223,8 +242,8 @@ li{
 .popup-menu{
   position: absolute;
   z-index: 1000;
-  background-color: $darkgrey;
-  width:200px;
+  background-color: $lightgrey;
+  width:230px;
   padding-left: 0;
 }
 
@@ -249,9 +268,9 @@ li{
 
 //animation
 .fade-in-animation{
-  -moz-transition: linear all 0.5s;
-  -webkit-transition: linear all 0.5s;
-  transition: linear all 0.5s;
+  -moz-transition: linear opacity 0.5s;
+  -webkit-transition: linear opacity 0.5s;
+  transition: linear opacity 0.5s;
 }
 
 .fade-in-animation.ng-hide{
@@ -259,7 +278,7 @@ li{
 }
 
 .view{
-  margin-left:200px;
+  margin-left:230px;
   padding:20px;
   background-color: white;
   min-height: 100vh;
@@ -311,6 +330,13 @@ li{
     margin-right: 0px;
     }
   }
+  li{
+  list-style: none;
+   strong{
+    font-weight: 300;
+    border-bottom: 4px solid $blue;
+  }
+  }
 }
 
 
@@ -351,4 +377,23 @@ background-color: lighten($sand,10);
   height: auto; 
   max-width: 100px;
 
+}
+
+.status{
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  font-weight: 200;
+  &.in-progress{
+    background-color: $red;
+  }
+}
+
+.bubble-image{
+  width:100px;
+  float:right;
+  img{
+  border-radius: 50%;
+  }
 }

@@ -3,12 +3,13 @@
 
 <div class="container-fluid full" ng-class="{'item-horizontal': isVertical()}"> 
 
+<div class="status in-progress">This site is currently being redesigned and redeveloped.</div>
 
  <div class="display-images">
-  <img ng-src="https://vineyardsandbox.s3.amazonaws.com/Rob/blog/{{device}}.png"/>
+  <img ng-src="https://vineyardsandbox.s3.amazonaws.com/Rob/illumination-site/{{device}}.png"/>
   <div class="device-selection">
      
-      <button class="btn" 
+       <button class="btn" 
       ng-class="{'active': device === 'desktop'}"
       ng-click="isDesktop()">Desktop</button>
       
@@ -22,71 +23,65 @@
       ng-class="{'active': device === 'phone'}"
       ng-click="isPhone()">Phone</button>
       
-      <a target="blank" href="http://blog.vineyardcincinnati.com"><button class="btn"><i class="fa fa-link"></i></button></a>
+      
+      <a target="blank" href="http://www.byrd-design.com/illumination/"><button class="btn"><i class="fa fa-link"></i></button></a>
       
     </div>
   <div>
 
   <div class="description">
-    <p>The Vineyard Blog is an external site with hosts the articles and stories of various staff members. The site helps the church connect with their users and echoes the voice of the Vineyard.</p>
+    <p>This site came about as a necessity to go along with my letterpress business. Clients needed a place to view my work and also learn about the process of letterpress. This site aims to be eductional, informative and also showcase the work I have done.</p>
   </div>
   
 <div class="wrapper">  
   
   <div class="subHead">
     <h1>Context</h1>
-    <p>In an increased effort to connect with users an external blog was created for the staff. The site could be accessed directly, but would often serve as a way to link article to the Vineyard's social media pages. While a WordPress blog was the brought up by the team, I did not want to limit us to WordPress template, widgets and security concerns that come along with WordPress. This site was a perfect candidate for a smaller Django CMS site, in which we could customize it to fit our needs. The site also had to tie into the current site design and be setup to easily change styles once the new Vineyard website was completed.</p>
+    <p>My previous experience with HTML and CSS before building this site was emails designed for previous employers. The site underwent several versions as my experience knowledge of responsive design and javascript grew. While this site was a huge acomplishment at the time, I am much more knowledgable and versed in development and design practices a few years later. A redesign and development is planned for the near future, for now the site has been taken down as it doesn't accurately reflect Illumination Letterpress as I would like for it to.</p>
     
   </div>
   
   <div class="row">
-  <div class="subHead col-md-8">
+  <div class="subHead col-md-12">
     <h1>Scope</h1>
     
-    <p>This project consisted in length of several weeks from start of code to final DNS transfer and hosting in Heroku. The site navigation is very minimal and came about from asking questions from content editors regarding what type of content they will be adding, what features would be beneficial in the CMS, how often they will be posting, what categories, how many categories etc... 
+    <p>This site was a challenge to learn as much as possible, as quick as possible to have a website live that could reflect Illumination Letterpress and communicate it's message effectively. The site which took around a month was probably 90% learning through tutorials and 10% coding and design. This site served as a launching point for my development career as I quickly grasped the concepts of HTML and CSS and was eager to understand Javascript better so I could execute my design background more effectively. 
     </p>
-    <p>
-    At completion the site sees much higher traffic than expected. A mobile-first, clean and clear design helps users focus on the content and easily navigate the site. The CMS ended up being much easier for the contentmanagers to use than WordPress blog pages they were used to working in.</p>
+    
     
     <h1 class="float-margin">Responsibilites</h1>
     <ul>
-      <li>UX design</li>
-      <li>MySQL Database design</li>
-      <li>Custom CMS build</li>
-      <li>Responsive Front-end with Susy and Breakpoint</li>
-      <li>Heroku hosting</li>
+      <li>Design</li>
+      <li>Responsive Front-end on Bootstrap</li>
+      <li>Hosting</li>
     </ul>
   </div>
 
 
-<div class="sidebar col-md-4">
-<div class="additional"><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/blog/admin.png" alt>
-    <div class="additonal-caption">
-    <p>Django provides an admin page based on the database design of the models. A simple WYSIWG editor was added and scheduling of posts. User Registration is also a feature Django helps by providing boilerplate models.</p>
-    </div>
-    </div>
-    
- 
-</div> 
+
  
 </div>
   
    <div id="technology" class="subHead">
     <h1>Technology</h1>
     <div class="gallery">
+<!--
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/django.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/python.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/mysql.png" alt></div>
+-->
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/html5.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/css3.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/js.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/bootstrap.png" alt></div>
+      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/photoshop.png" alt></div>
+<!--
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/jquery.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/susy.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/gulp.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/git-logo.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/github.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/heroku-Logo.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/analytics.png" alt></div>
-<!--
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/npm.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/bower.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/mongodb.png" alt></div>
@@ -96,14 +91,14 @@
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/gulp.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/git-logo.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/heroku-Logo.png" alt></div>
-      
 -->
+      
     </div>
   </div>
   
 <div id="live-view" class="subHead">
     <h1>Live&nbsp;View</h1>  
-   <iframe target='_top' src="http://blog.vineyardcincinnati.com/" width="100%" height="500">
+   <iframe src="http://www.byrd-design.com/illumination/" width="100%" height="500">
   <p>Your browser does not support iframes.</p>
 </iframe>
 </div>  
