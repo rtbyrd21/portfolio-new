@@ -6,6 +6,8 @@ angular.module('app').directive('rbIlluminationSite', function(){
     },
     templateUrl: 'js/directives/directiveTemplates/illuminationsite.html',
     link: function(scope, el, attr, ctrl){
+      
+      
       scope.device = 'desktop';
       
       scope.isDesktop = function(){

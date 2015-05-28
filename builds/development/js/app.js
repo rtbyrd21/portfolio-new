@@ -8,3 +8,4 @@ angular.module('app', ['ngRoute', 'rbFramework'])
     $anchorScroll();  
   });
 });
+

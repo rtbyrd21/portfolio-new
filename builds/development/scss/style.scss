@@ -52,7 +52,12 @@ li{
 
 .logo-area{
 }
-
+.display-images{
+  &.letterpress > img{
+      padding:60px;
+    
+  }
+}
 
 .title-area{
   display: inline-block;

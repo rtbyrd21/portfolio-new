@@ -1,5 +1,5 @@
 
-angular.module('app').config(function($routeProvider){
+angular.module('app').config(function($routeProvider, $locationProvider){
   var routes = [
     {
       url: '/healing-center',
@@ -74,15 +74,35 @@ angular.module('app').config(function($routeProvider){
       }
     },
     {
+      url: '/esh',
+      config: {
+        template: '<rb-esh></rb-esh>'
+      }
+    },
+    {
+      url: '/letterpress',
+      config: {
+        template: '<rb-letterpress></rb-letterpress>'
+      }
+    }
+    
+    ,
+    {
       url: '/',
       config: {
-        template: '<rb-home></rb-home>'
+        template: '<rb-about></rb-about>'
       }
     }
   ];
+  $locationProvider.html5Mode(true);
   
-  routes.forEach(function(route){
-    $routeProvider.when(route.url, route.config);
-  });
+
+    routes.forEach(function(route){
+      $routeProvider.when(route.url, route.config);
+    });
+
+  
+ 
+  
   $routeProvider.otherwise({redirectTo: '/'});
 });

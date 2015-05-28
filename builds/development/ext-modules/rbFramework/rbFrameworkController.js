@@ -1,6 +1,6 @@
 
 angular.module('rbFramework')
-.controller('rbFrameworkController', function($scope, $rootScope, $window, $timeout, $location){
+.controller('rbFrameworkController', function($scope, $rootScope, $window, $timeout, $location, $routeParams, $route){
   
     $scope.isMenuVisible = true;
     $scope.isMenuButtonVisible = true;
@@ -14,7 +14,17 @@ angular.module('rbFramework')
         checkWidth();
         broadcastMenuState();
     });
+    
+    var viewLoaded = false;
+    var url = $location.$$url;
+    $scope.$on('$locationChangeSuccess', function(){
+      viewLoaded = true;
+    });
 
+    if(!viewLoaded){
+        $route.reload();  
+    }
+    
   
     $scope.$on('rb-menu-orientation-changed-event', function(evt, data){
         $scope.isMenuVertical = data.isMenuVertical;
