@@ -180,6 +180,9 @@ rb-menu-group > li {
   top: -6px;
   right: 10px; }
 
+#live-view {
+  display: none; }
+
 .item-horizontal {
   display: inline-block;
   width: 165px !important;

@@ -1,6 +1,6 @@
 
 angular.module('rbMenu').controller('rbMenuController', 
-function($scope, $rootScope){
+function($scope, $rootScope, $location){
   
     $scope.showMenu = true;
     $scope.openMenuScope = null;
@@ -11,6 +11,7 @@ function($scope, $rootScope){
         return $scope.activeElement;
     };
   
+    
   
     this.setActiveElement = function(el){
         $scope.activeElement = el;
@@ -20,12 +21,13 @@ function($scope, $rootScope){
     this.isVertical = function(){
         return $scope.isVertical;
     }
-  
+    
     this.setRoute = function(route, label){
         $rootScope.$broadcast('menu-item-selected-event',
               {route: route,
               title: label});
     };
+  
   
     this.setOpenMenuScope = function(scope){
         $scope.openMenuScope = scope;

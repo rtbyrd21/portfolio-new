@@ -6,7 +6,10 @@ angular.module('rbFramework')
     $scope.isMenuButtonVisible = true;
     $scope.isMenuVertical = true;
     $scope.allowHorizontalToggle = true;
-
+   $scope.aboutActive = true;
+    
+  
+  
     $scope.$on('menu-item-selected-event', function(evt, data){
         $scope.routeString = data.route;
         $scope.routeTitle = data.title;
@@ -17,8 +20,22 @@ angular.module('rbFramework')
     
     var viewLoaded = false;
     var url = $location.$$url;
+  
     $scope.$on('$locationChangeSuccess', function(){
       viewLoaded = true;
+      
+     $timeout(function(){ 
+      if($location.$$url === '/about'){
+    $scope.aboutActive = true;
+  }else{
+    $scope.aboutActive = undefined;
+
+    
+  }
+      
+      
+    },10);
+      
     });
 
     if(!viewLoaded){
@@ -65,4 +82,6 @@ angular.module('rbFramework')
     $timeout(function(){
       checkWidth();
     },0);
+  
+    
 });

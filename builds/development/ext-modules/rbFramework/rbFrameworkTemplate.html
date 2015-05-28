@@ -3,8 +3,14 @@
   <div class="logo-area col-sm-9">
 <!--    <img class="icon" ng-src="{{iconFile}}" />-->
     <div class="title-area">
-      <p class="logo-title">{{title}} <span class="subtitle">{{subtitle}}</span> | {{routeTitle || ''}}</p>
-<!--      <p class="logo-subtitle">{{subtitle}}</p>-->
+      <p class="logo-title">{{title}} </ng-if>
+      
+      <span class="subtitle">{{subtitle}}</span>
+      <span ng-if="isMenuButtonVisible"> <br></span>
+      <span ng-if="routeTitle"> 
+      <span ng-if="!isMenuButtonVisible"> |</span>
+      </ng-if>{{routeTitle || ''}}</p>
+
     </div>
     
     <div ng-if="isMenuButtonVisible" ng-click="menuButtonClicked()"
@@ -22,17 +28,10 @@
   
   
   
-  <div class="right-side-controls col-sm-3">
-<!--
-    <div>
-      <button class="btn btn-primary">Button 1</button>
-      <button class="btn btn-success">Button 1</button>
-      <button class="btn btn-warning">Button 1</button>
-    </div>
--->
+  <div class="right-side-controls col-sm-3" ng-if="!isMenuButtonVisible">
     <ul>
-      <li><a href="/#/about">About</a></li>
-      <li><a target="blank" href="https://vineyardsandbox.s3.amazonaws.com/Rob/byrd_resume.pdf">Resume</a></li>
+      <li><a ng-class="{'about-active': aboutActive}" href="/#/about">ABOUT</a></li>
+      <li><a target="blank" href="https://vineyardsandbox.s3.amazonaws.com/Rob/byrd_resume.pdf">RESUME</a></li>
 <!--      <li><a href="contact">Contact</a></li>-->
     </ul>
   </div>

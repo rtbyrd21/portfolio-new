@@ -84,9 +84,12 @@
         
         
 
-        <rb-menu-item label="Letterpress" icon="" route="letterpress"></rb-menu-item>
+        <rb-menu-item label="LETTERPRESS" icon="" route="letterpress" class="solo"></rb-menu-item>
 <!--        <rb-menu-item label="Fine Art" icon="" route="illumination"></rb-menu-item>-->
         
+        
+        <rb-menu-item ng-if="isMenuVertical" label="ABOUT" icon="" route="about" class="solo"></rb-menu-item>
+        <rb-menu-item ng-if="isMenuVertical" label="RESUME" icon="" route="resume" class="solo"></rb-menu-item>
         
       </rb-menu>
       
