@@ -22,6 +22,6 @@
     "express": "^4.12.4",
     "gulp": "^3.8.11",
     "gulp-compass": "^2.0.4",
-    "gulp-nodemon": "^2.0.3",
+    "gulp-nodemon": "^2.0.3"
   }
 }
