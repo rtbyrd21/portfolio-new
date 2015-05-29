@@ -1,11 +1,20 @@
 
 angular.module('rbMenu').controller('rbMenuController', 
-function($scope, $rootScope, $location){
+function($scope, $rootScope, $location, $window){
   
-    $scope.showMenu = true;
+    var width = Math.max($($window).width(), $window.innerWidth);
+    
+    
     $scope.openMenuScope = null;
     $scope.isVertical = true;
   
+  
+    
+     if(width >= 768){
+      $scope.showMenu = true;
+     }else{
+       $scope.showMenu = false;
+     };
   
     this.getActiveElement = function(){
         return $scope.activeElement;
@@ -57,11 +66,12 @@ function($scope, $rootScope, $location){
       }
     });
   
-  
     $scope.$on('menu-show', function(evt, data){
       $scope.showMenu = data.show;
       $scope.isVertical = data.isVertical;
       $scope.allowHorizontalToggle = data.allowHorizontalToggle;
     });
+  
+
   
 });

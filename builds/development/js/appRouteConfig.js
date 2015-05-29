@@ -84,9 +84,13 @@ angular.module('app').config(function($routeProvider, $locationProvider){
       config: {
         template: '<rb-letterpress></rb-letterpress>'
       }
-    }
-    
-    ,
+    },
+    {
+      url: '/artwork',
+      config: {
+        template: '<rb-artwork></rb-artwork>'
+      }
+    },
     {
       url: '/',
       config: {

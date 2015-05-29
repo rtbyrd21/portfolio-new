@@ -316,6 +316,12 @@ rb-menu-group > li{
   background-color: white;
   min-height: 100vh;
   overflow: auto;
+  
+  @media screen and (max-width: 430px){
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+ }
 }
 
 .view-full-width{
