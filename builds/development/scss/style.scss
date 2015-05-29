@@ -88,6 +88,9 @@ font-weight: 400;
     font-style: italic;
     font-weight: 100;
   }
+  @media screen and (max-width: 530px){
+  width:70%;
+}
 }
 
 .icon{
@@ -112,7 +115,7 @@ font-weight: 400;
 }
 
 
-@media screen and (max-width: 430px){
+@media screen and (max-width: 530px){
   .icon{
     display: none;
   }

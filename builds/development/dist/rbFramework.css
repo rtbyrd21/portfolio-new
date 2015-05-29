@@ -226,10 +226,10 @@ rb-menu-group > li {
   height: 40px;
   width: 60px;
   margin-top: 10px;
-  border: 1px solid #d4d9dd;
   padding: 0;
   font-size: 26px;
-  color: #d4d9dd; }
+  color: white;
+  background: none; }
 
 .fade-in-animation {
   -moz-transition: linear opacity 0.5s;
