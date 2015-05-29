@@ -65,6 +65,9 @@ li {
   .title-area .subtitle {
     font-style: italic;
     font-weight: 100; }
+  @media screen and (max-width: 530px) {
+    .title-area {
+      width: 70%; } }
 
 .icon {
   display: inline-block;
@@ -84,7 +87,7 @@ li {
   font-size: 13px;
   margin-top: -13px; }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 530px) {
   .icon {
     display: none; }
   .logo-title {
