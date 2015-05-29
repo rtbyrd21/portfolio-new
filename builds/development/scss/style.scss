@@ -27,6 +27,9 @@ p{
   margin-left:0px;
   margin-right: 0px;
 }
+  h1{
+  font-size: 26px;
+  }
  
 }
 
@@ -329,11 +332,11 @@ rb-menu-group > li{
   min-height: 100vh;
   overflow: hidden;
   
-  @media screen and (max-width: 430px){
-  position: absolute;
-  width: 100%;
-  z-index: 0;
- }
+//  @media screen and (max-width: 430px){
+//  position: absolute;
+//  width: 100%;  
+//  z-index: 0;
+// }
 }
 
 .view-full-width{
