@@ -6,7 +6,7 @@ angular.module('rbFramework')
     $scope.isMenuButtonVisible = true;
     $scope.isMenuVertical = true;
     $scope.allowHorizontalToggle = true;
-   $scope.aboutActive = true;
+    $scope.aboutActive = true;
     
   
   
@@ -22,19 +22,20 @@ angular.module('rbFramework')
     var url = $location.$$url;
   
     $scope.$on('$locationChangeSuccess', function(){
-      viewLoaded = true;
+      viewLoaded = true;  
       
      $timeout(function(){ 
-      if($location.$$url === '/about'){
-    $scope.aboutActive = true;
-  }else{
-    $scope.aboutActive = undefined;
-
-    
-  }
+        if($location.$$url === '/about'){
+          $scope.aboutActive = true;
+        }else{
+          $scope.aboutActive = undefined;
+        }
+      },10);  
       
+      $timeout(function(){ 
+        $('.menu-area-vertical').css('height', $('.view').height() + 40)
+      },120);  
       
-    },10);
       
     });
 
@@ -54,6 +55,7 @@ angular.module('rbFramework')
       });
     });
   
+    
     $scope.$on('$destroy', function(){
       $($window).off('resize.rbFramework'); //remove the handler
     })
@@ -81,6 +83,7 @@ angular.module('rbFramework')
 
     $timeout(function(){
       checkWidth();
+      broadcastMenuState();
     },0);
   
     

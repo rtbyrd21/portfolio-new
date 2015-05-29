@@ -609,7 +609,7 @@ angular.module('rbMenu').controller('rbMenuController',
   
     
      if(width >= 768){
-      $scope.showMenu = true;
+      $scope.showMenu = true; 
      }else{
        $scope.showMenu = false;
      };
@@ -673,7 +673,6 @@ angular.module('rbMenu').controller('rbMenuController',
 
   
 }]);
-angular.module('rbDashboard', []);
 angular.module('rbFramework', ['rbMenu', 'rbDashboard']);
 
 angular.module('rbFramework').directive('rbFramework', function(){
@@ -696,7 +695,7 @@ angular.module('rbFramework')
     $scope.isMenuButtonVisible = true;
     $scope.isMenuVertical = true;
     $scope.allowHorizontalToggle = true;
-   $scope.aboutActive = true;
+    $scope.aboutActive = true;
     
   
   
@@ -712,20 +711,15 @@ angular.module('rbFramework')
     var url = $location.$$url;
   
     $scope.$on('$locationChangeSuccess', function(){
-      viewLoaded = true;
+      viewLoaded = true;  
       
      $timeout(function(){ 
-      if($location.$$url === '/about'){
-    $scope.aboutActive = true;
-  }else{
-    $scope.aboutActive = undefined;
-
-    
-  }
-      
-      
-    },10);
-      
+        if($location.$$url === '/about'){
+          $scope.aboutActive = true;
+        }else{
+          $scope.aboutActive = undefined;
+        }
+      },10);  
     });
 
     if(!viewLoaded){
@@ -771,7 +765,9 @@ angular.module('rbFramework')
 
     $timeout(function(){
       checkWidth();
+      broadcastMenuState();
     },0);
   
     
 }]);
+angular.module('rbDashboard', []);
