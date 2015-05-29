@@ -1,9 +1,17 @@
 @import url(http://fonts.googleapis.com/css?family=Exo+2:400,200,600,800);
 @import url(http://fonts.googleapis.com/css?family=Exo+2:400,200,600,800);
+html {
+  overflow-x: hidden; }
+
 body {
   background: #d4d9dd;
   font-family: "museo-slab",serif;
-  margin: 0px !important; }
+  margin: 0px !important;
+  overflow-x: hidden; }
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden; }
 
 p {
   font-weight: 300;
@@ -247,7 +255,7 @@ rb-menu-group > li {
   padding: 20px;
   background-color: white;
   min-height: 100vh;
-  overflow: auto; }
+  overflow: hidden; }
   @media screen and (max-width: 430px) {
     .view {
       position: absolute;
