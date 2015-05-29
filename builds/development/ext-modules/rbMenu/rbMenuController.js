@@ -11,7 +11,7 @@ function($scope, $rootScope, $location, $window){
   
     
      if(width >= 768){
-      $scope.showMenu = true;
+      $scope.showMenu = true; 
      }else{
        $scope.showMenu = false;
      };

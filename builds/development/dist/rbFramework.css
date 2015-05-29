@@ -21,7 +21,9 @@ p {
 @media screen and (max-width: 430px) {
   p {
     margin-left: 0px;
-    margin-right: 0px; } }
+    margin-right: 0px; }
+  h1 {
+    font-size: 26px; } }
 
 .wrapper {
   margin-left: 5%;

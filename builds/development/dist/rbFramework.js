@@ -673,6 +673,7 @@ angular.module('rbMenu').controller('rbMenuController',
 
   
 }]);
+angular.module('rbDashboard', []);
 angular.module('rbFramework', ['rbMenu', 'rbDashboard']);
 
 angular.module('rbFramework').directive('rbFramework', function(){
@@ -774,4 +775,3 @@ angular.module('rbFramework')
   
     
 }]);
-angular.module('rbDashboard', []);

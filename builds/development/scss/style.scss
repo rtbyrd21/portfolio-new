@@ -33,6 +33,14 @@ p{
  
 }
 
+
+@media screen and (min-width: 430px){
+ .mobile-only{
+   display: none;
+ }
+ 
+}
+
 .wrapper{
   margin-left:5%;
   margin-right:5%;
@@ -178,6 +186,15 @@ font-weight: 400;
   color: $darkgrey;
   padding-left: 0;
 }
+rb-menu{
+position: inherit;
+}
+
+@media screen and (max-width: 430px){
+  rb-menu{
+  position: absolute;
+  }
+}
 
 rb-menu-group > li{
   text-transform: uppercase;
@@ -188,7 +205,8 @@ rb-menu-group > li{
   float:left;
   width: 230px;
   min-height: 100vh;
-  padding-top: 30px
+  padding-top: 30px;
+  z-index:100  
 }
 
 .menu-area-horizontal{
@@ -331,15 +349,17 @@ rb-menu-group > li{
   background-color: white;
   min-height: 100vh;
   overflow: hidden;
-  
-//  @media screen and (max-width: 430px){
-//  position: absolute;
-//  width: 100%;  
-//  z-index: 0;
-// }
+  z-index: 0;
+}
+
+@media screen and (max-width: 430px){
+  .view{
+  margin-left:0px;
+  }
 }
 
 .view-full-width{
+  margin-left:230px;
   margin-left:0;
 }
 
