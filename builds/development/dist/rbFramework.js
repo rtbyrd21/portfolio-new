@@ -720,6 +720,12 @@ angular.module('rbFramework')
           $scope.aboutActive = undefined;
         }
       },10);  
+      
+      $timeout(function(){ 
+        $('.menu-area-vertical').css('height', $('.view').height() + 40)
+      },120);  
+      
+      
     });
 
     if(!viewLoaded){
@@ -738,6 +744,7 @@ angular.module('rbFramework')
       });
     });
   
+    
     $scope.$on('$destroy', function(){
       $($window).off('resize.rbFramework'); //remove the handler
     })

@@ -343,6 +343,10 @@ rb-menu-group > li {
   flex: auto;
   width: 100px;
   margin-right: 30px; }
+  @media screen and (min-width: 430px) {
+    .gallery > * {
+      width: 80px;
+      margin-right: 3%; } }
 
 .gallery > * img {
   width: 100%;
