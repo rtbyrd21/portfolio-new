@@ -505,6 +505,7 @@ angular.module('app').directive('rbAbout', function(){
     }
   }
 });
+angular.module('rbDashboard', []);
 angular.module('rbMenu', ['ngAnimate']);
 
 angular.module('rbMenu').directive('rbMenuItem', function(){
@@ -777,4 +778,3 @@ angular.module('rbFramework')
   
     
 }]);
-angular.module('rbDashboard', []);

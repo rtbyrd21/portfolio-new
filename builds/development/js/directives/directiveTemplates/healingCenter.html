@@ -25,6 +25,32 @@
       <a target="blank" href="http://www.healingcentercincinnati.org"><button class="btn"><i class="fa fa-link"></i></button></a>
       
     </div>
+    
+     <div class="device-selection">
+     
+      <button class="btn" 
+      ng-class="{'active': device === 'admin-one'}"
+      ng-click="isAdminOne()">CMS 1</button>
+      
+      
+      <button class="btn" 
+      ng-class="{'active': device === 'admin-two'}"
+      ng-click="isAdminTwo()">CMS 2</button>
+      
+      
+      <button class="btn" 
+      ng-class="{'active': device === 'admin-three'}"
+      ng-click="isAdminThree()">CMS 3</button>
+      
+      
+      <button class="btn" 
+      ng-class="{'active': device === 'admin-four'}"
+      ng-click="isAdminFour()">CMS 4</button>
+      
+
+      
+    </div>
+    
   <div>
 
   <div class="description">

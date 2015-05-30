@@ -20,6 +20,21 @@ angular.module('app').directive('rbHealingCenter', function(){
         scope.device = 'phone';
       };
       
+      scope.isAdminOne = function(){
+        scope.device = 'admin-one';
+      };
+      
+      scope.isAdminTwo = function(){
+        scope.device = 'admin-two';
+      };
+      
+      scope.isAdminThree = function(){
+        scope.device = 'admin-three';
+      };
+      
+      scope.isAdminFour = function(){
+        scope.device = 'admin-four';
+      };
      
     }
   }
