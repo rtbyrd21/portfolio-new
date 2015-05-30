@@ -3,7 +3,8 @@
 angular.module('app').directive('rbNigeria', function(){
     return{
     scope:{
-      image: '@'
+      image: '@',
+      mobile: '='
     },
     templateUrl: 'js/directives/directiveTemplates/nigeria.html',
     link: function(scope, el, attr, ctrl){
@@ -21,7 +22,10 @@ angular.module('app').directive('rbNigeria', function(){
         scope.device = 'phone';
       };
       
-     
+      scope.isMap = function(){
+        scope.device = 'map';
+      };
+     console.log(scope.mobile);
     }
   }
 });

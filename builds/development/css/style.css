@@ -367,3 +367,6 @@ rb-menu-group > li {
   float: right; }
   .bubble-image img {
     border-radius: 50%; }
+
+iframe {
+  width: 100%; }

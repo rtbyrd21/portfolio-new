@@ -381,6 +381,21 @@ angular.module('app').directive('rbHealingCenter', function(){
         scope.device = 'phone';
       };
       
+      scope.isAdminOne = function(){
+        scope.device = 'admin-one';
+      };
+      
+      scope.isAdminTwo = function(){
+        scope.device = 'admin-two';
+      };
+      
+      scope.isAdminThree = function(){
+        scope.device = 'admin-three';
+      };
+      
+      scope.isAdminFour = function(){
+        scope.device = 'admin-four';
+      };
      
     }
   }
@@ -506,6 +521,110 @@ angular.module('app').directive('rbAbout', function(){
   }
 });
 angular.module('rbDashboard', []);
+angular.module('rbFramework', ['rbMenu', 'rbDashboard']);
+
+angular.module('rbFramework').directive('rbFramework', function(){
+  return {
+    transclude: true,
+    scope: {
+      title: '@',
+      subtitle: '@',
+      iconFile: '@'
+    },
+    controller: 'rbFrameworkController',
+    templateUrl: 'ext-modules/rbFramework/rbFrameworkTemplate.html'
+  };
+});
+
+angular.module('rbFramework')
+.controller('rbFrameworkController', ["$scope", "$rootScope", "$window", "$timeout", "$location", "$routeParams", "$route", function($scope, $rootScope, $window, $timeout, $location, $routeParams, $route){
+  
+    $scope.isMenuVisible = true;
+    $scope.isMenuButtonVisible = true;
+    $scope.isMenuVertical = true;
+    $scope.allowHorizontalToggle = true;
+    $scope.aboutActive = true;
+    
+  
+  
+    $scope.$on('menu-item-selected-event', function(evt, data){
+        $scope.routeString = data.route;
+        $scope.routeTitle = data.title;
+        $location.path(data.route);
+        checkWidth();
+        broadcastMenuState();
+    });
+    
+    var viewLoaded = false;
+    var url = $location.$$url;
+  
+    $scope.$on('$locationChangeSuccess', function(){
+      viewLoaded = true;  
+      
+     $timeout(function(){ 
+        if($location.$$url === '/about'){
+          $scope.aboutActive = true;
+        }else{
+          $scope.aboutActive = undefined;
+        }
+      },10);  
+      
+      $timeout(function(){ 
+        $('.menu-area-vertical').css('height', $('.view').height() + 40)
+      },120);  
+      
+      
+    });
+
+    if(!viewLoaded){
+        $route.reload();  
+    }
+    
+  
+    $scope.$on('rb-menu-orientation-changed-event', function(evt, data){
+        $scope.isMenuVertical = data.isMenuVertical;
+    });
+  
+    $($window).on('resize.rbFramework', function(){
+      $scope.$apply(function(){
+        checkWidth();
+        broadcastMenuState();
+      });
+    });
+  
+    
+    $scope.$on('$destroy', function(){
+      $($window).off('resize.rbFramework'); //remove the handler
+    })
+    
+    var checkWidth = function(){
+      var width = Math.max($($window).width(), $window.innerWidth);
+      $scope.isMenuVisible = (width >= 768);
+      $scope.isMenuButtonVisible = !$scope.isMenuVisible;
+    };
+  
+    $scope.menuButtonClicked = function(){
+      $scope.isMenuVisible = !$scope.isMenuVisible;
+      broadcastMenuState();
+      //$scope.$apply();
+    }
+    
+    var broadcastMenuState = function(){
+      $rootScope.$broadcast('menu-show', 
+        {
+          show: $scope.isMenuVisible,
+          isVertical: $scope.isMenuVertical,
+          allowHorizontalToggle: !$scope.isMenuButtonVisible
+        });
+    }
+
+    $timeout(function(){
+      checkWidth();
+      broadcastMenuState();
+    },0);
+  
+    
+}]);
 angular.module('rbMenu', ['ngAnimate']);
 
 angular.module('rbMenu').directive('rbMenuItem', function(){
@@ -673,108 +792,4 @@ angular.module('rbMenu').controller('rbMenuController',
   
 
   
-}]);
-angular.module('rbFramework', ['rbMenu', 'rbDashboard']);
-
-angular.module('rbFramework').directive('rbFramework', function(){
-  return {
-    transclude: true,
-    scope: {
-      title: '@',
-      subtitle: '@',
-      iconFile: '@'
-    },
-    controller: 'rbFrameworkController',
-    templateUrl: 'ext-modules/rbFramework/rbFrameworkTemplate.html'
-  };
-});
-
-angular.module('rbFramework')
-.controller('rbFrameworkController', ["$scope", "$rootScope", "$window", "$timeout", "$location", "$routeParams", "$route", function($scope, $rootScope, $window, $timeout, $location, $routeParams, $route){
-  
-    $scope.isMenuVisible = true;
-    $scope.isMenuButtonVisible = true;
-    $scope.isMenuVertical = true;
-    $scope.allowHorizontalToggle = true;
-    $scope.aboutActive = true;
-    
-  
-  
-    $scope.$on('menu-item-selected-event', function(evt, data){
-        $scope.routeString = data.route;
-        $scope.routeTitle = data.title;
-        $location.path(data.route);
-        checkWidth();
-        broadcastMenuState();
-    });
-    
-    var viewLoaded = false;
-    var url = $location.$$url;
-  
-    $scope.$on('$locationChangeSuccess', function(){
-      viewLoaded = true;  
-      
-     $timeout(function(){ 
-        if($location.$$url === '/about'){
-          $scope.aboutActive = true;
-        }else{
-          $scope.aboutActive = undefined;
-        }
-      },10);  
-      
-      $timeout(function(){ 
-        $('.menu-area-vertical').css('height', $('.view').height() + 40)
-      },120);  
-      
-      
-    });
-
-    if(!viewLoaded){
-        $route.reload();  
-    }
-    
-  
-    $scope.$on('rb-menu-orientation-changed-event', function(evt, data){
-        $scope.isMenuVertical = data.isMenuVertical;
-    });
-  
-    $($window).on('resize.rbFramework', function(){
-      $scope.$apply(function(){
-        checkWidth();
-        broadcastMenuState();
-      });
-    });
-  
-    
-    $scope.$on('$destroy', function(){
-      $($window).off('resize.rbFramework'); //remove the handler
-    })
-    
-    var checkWidth = function(){
-      var width = Math.max($($window).width(), $window.innerWidth);
-      $scope.isMenuVisible = (width >= 768);
-      $scope.isMenuButtonVisible = !$scope.isMenuVisible;
-    };
-  
-    $scope.menuButtonClicked = function(){
-      $scope.isMenuVisible = !$scope.isMenuVisible;
-      broadcastMenuState();
-      //$scope.$apply();
-    }
-    
-    var broadcastMenuState = function(){
-      $rootScope.$broadcast('menu-show', 
-        {
-          show: $scope.isMenuVisible,
-          isVertical: $scope.isMenuVertical,
-          allowHorizontalToggle: !$scope.isMenuButtonVisible
-        });
-    }
-
-    $timeout(function(){
-      checkWidth();
-      broadcastMenuState();
-    },0);
-  
-    
 }]);

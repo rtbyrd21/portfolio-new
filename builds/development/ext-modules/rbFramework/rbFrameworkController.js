@@ -7,8 +7,7 @@ angular.module('rbFramework')
     $scope.isMenuVertical = true;
     $scope.allowHorizontalToggle = true;
     $scope.aboutActive = true;
-    
-  
+    $scope.isMobile = true;
   
     $scope.$on('menu-item-selected-event', function(evt, data){
         $scope.routeString = data.route;
@@ -52,6 +51,7 @@ angular.module('rbFramework')
       $scope.$apply(function(){
         checkWidth();
         broadcastMenuState();
+        broadcastMobileState();
       });
     });
   
@@ -64,13 +64,20 @@ angular.module('rbFramework')
       var width = Math.max($($window).width(), $window.innerWidth);
       $scope.isMenuVisible = (width >= 768);
       $scope.isMenuButtonVisible = !$scope.isMenuVisible;
+      $scope.isMobile = (width <= 460);
     };
   
     $scope.menuButtonClicked = function(){
       $scope.isMenuVisible = !$scope.isMenuVisible;
       broadcastMenuState();
-      //$scope.$apply();
     }
+    
+//    var broadcastMobileState = function(){
+//      $rootScope.$broadcast('mobile-state',
+//                {
+//          isMobile: $scope.isMobile
+//        });
+//    };
     
     var broadcastMenuState = function(){
       $rootScope.$broadcast('menu-show', 
@@ -84,7 +91,8 @@ angular.module('rbFramework')
     $timeout(function(){
       checkWidth();
       broadcastMenuState();
+//      broadcastMobileState();
     },0);
   
-    
+  
 });

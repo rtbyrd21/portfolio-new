@@ -10,7 +10,7 @@ angular.module('app').config(function($routeProvider, $locationProvider){
     {
       url: '/nigeria',
       config: {
-        template: '<rb-nigeria></rb-nigeria>'
+        template: '<rb-nigeria mobile="isMobile"></rb-nigeria>'
       }
     },
     {

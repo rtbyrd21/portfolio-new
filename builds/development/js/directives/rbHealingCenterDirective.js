@@ -12,6 +12,10 @@ angular.module('app').directive('rbHealingCenter', function(){
         scope.device = 'desktop';
       };
       
+      scope.isDesktopTwo = function(){
+        scope.device = 'desktop-two';
+      };
+      
       scope.isTablet = function(){
         scope.device = 'tablet';
       };
