@@ -56,7 +56,7 @@ angular.module('rbFramework')
     $($window).on('resize.rbFramework', function(){
       $scope.$apply(function(){
         checkWidth();
-        broadcastMenuState();
+//        broadcastMenuState();
         determineViewWidth();
         setMenuTop();
       });
