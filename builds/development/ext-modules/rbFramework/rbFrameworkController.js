@@ -58,7 +58,7 @@ angular.module('rbFramework')
         checkWidth();
         broadcastMenuState();
         determineViewWidth();
-        setMenuTop();
+//        setMenuTop();
       });
     });
   
