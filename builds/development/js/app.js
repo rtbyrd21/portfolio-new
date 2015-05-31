@@ -13,13 +13,16 @@ angular.module('app', ['ngRoute', 'rbFramework'])
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
+//              element.bind('click', function() {
+//                element.addClass('finished-loading');
+//              }
                 element.bind('load', function() {
                     //call the function that was passed
                     scope.$apply(attrs.imageonload);
-//                    element.addClass('finished-loading');
+                    
 //                    $timeout(function(){
 //                      element.removeClass('finished-loading');
-//                    },100);
+//                    },1000);
                 });
             }
         };
@@ -33,7 +36,7 @@ angular.module('app', ['ngRoute', 'rbFramework'])
               
               var setHeight = function(){
               $timeout(function(){
-                $('.image-loader').css('height', $('.image-loaded').height());
+                $('.image-not-loaded').css('height', $('.image-loaded').height());
     },1000);
               }
               

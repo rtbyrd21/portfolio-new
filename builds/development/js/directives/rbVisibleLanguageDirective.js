@@ -9,17 +9,15 @@ angular.module('app').directive('rbVisibleLanguage', function(){
     templateUrl: 'js/directives/directiveTemplates/visiblelanguage.html',
     link: function(scope, el, attr, ctrl){
       scope.device = 'desktop';
-      console.log('called');
+      scope.isLoaded = false;
+      
+      scope.imageLoad = function(){
+              scope.isLoaded = true;
+        
+      }
       scope.isDesktop = function(){
+//        scope.isLoaded = false;
         scope.device = 'desktop';
-      };
-      
-      scope.isTablet = function(){
-        scope.device = 'tablet';
-      };
-      
-      scope.isPhone = function(){
-        scope.device = 'phone';
       };
       
      

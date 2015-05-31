@@ -9,13 +9,21 @@ angular.module('app').directive('rbEsh', function(){
     templateUrl: 'js/directives/directiveTemplates/esh.html',
     link: function(scope, el, attr, ctrl){
       scope.device = 'desktop';
+      scope.isLoaded = false;
       
-       scope.isDesktop = function(){
+      scope.imageLoad = function(){
+              scope.isLoaded = true;
+        
+      }
+      
+      scope.isDesktop = function(){
+        scope.isLoaded = false;
         scope.device = 'desktop';
       };
       
       
       scope.isPrintAd = function(){
+        scope.isLoaded = false;
         scope.device = 'print-ad';
       };
       

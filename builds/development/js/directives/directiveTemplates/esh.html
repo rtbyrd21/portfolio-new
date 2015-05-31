@@ -6,7 +6,16 @@
 
 
  <div class="display-images">
-  <img ng-src="https://vineyardsandbox.s3.amazonaws.com/Rob/esh/{{device}}.png"/>
+ 
+  <div ng-show="!isLoaded" class="image-not-loaded">
+  <i class="fa fa-refresh fa-3x fa-spin"></i>
+</div>  
+ 
+ <div ng-show="isLoaded" class="image-loaded">
+  <img imageonload="imageLoad()" class="loading image-loader" 
+  ng-src="https://vineyardsandbox.s3.amazonaws.com/Rob/esh/{{device}}.png"/>
+</div>  
+ 
   <div class="device-selection">
      
       <button class="btn" 

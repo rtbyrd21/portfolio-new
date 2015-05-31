@@ -6,7 +6,16 @@
 <div class="status in-progress">This site is currently being redesigned and redeveloped.</div>
 
  <div class="display-images">
-  <img ng-src="https://vineyardsandbox.s3.amazonaws.com/Rob/illumination-site/{{device}}.png"/>
+ 
+  <div ng-show="!isLoaded" class="image-not-loaded">
+  <i class="fa fa-refresh fa-3x fa-spin"></i>
+</div>  
+ 
+ <div ng-show="isLoaded" class="image-loaded">
+  <img imageonload="imageLoad()" class="loading image-loader" 
+  ng-src="https://vineyardsandbox.s3.amazonaws.com/Rob/illumination-site/{{device}}.png"/>
+</div>  
+
   <div class="device-selection">
      
        <button class="btn" 
@@ -65,44 +74,17 @@
    <div id="technology" class="subHead">
     <h1>Technology</h1>
     <div class="gallery">
-<!--
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/django.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/python.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/mysql.png" alt></div>
--->
+
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/html5.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/css3.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/js.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/bootstrap.png" alt></div>
       <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/photoshop.png" alt></div>
-<!--
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/jquery.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/susy.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/gulp.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/git-logo.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/github.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/heroku-Logo.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/npm.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/bower.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/mongodb.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/sass.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/susy.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/compass-logo.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/gulp.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/git-logo.png" alt></div>
-      <div><img src="https://vineyardsandbox.s3.amazonaws.com/Rob/logos/heroku-Logo.png" alt></div>
--->
+
       
     </div>
   </div>
   
-<!--
-<div id="live-view" class="subHead">
-    <h1>Live&nbsp;View</h1>  
-   <iframe src="http://www.byrd-design.com/illumination/" width="100%" height="500">
-  <p>Your browser does not support iframes.</p>
-</iframe>
-</div>  
--->
+
 </div>
 </div>

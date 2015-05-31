@@ -15,10 +15,7 @@ angular.module('app').directive('rbHealingCenter', function($timeout){
       };
       
       scope.imageLoad = function(){
-//        console.log('loaded');
-//        $timeout(function(){
               scope.isLoaded = true;
-//          },0);
         
       }
       

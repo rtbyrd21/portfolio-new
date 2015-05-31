@@ -431,5 +431,18 @@ rb-menu-group > li {
     font-size: 9em;
     position: absolute;
     color: #edeff0; }
-  .image-loader {
-    min-height: 250px; } }
+  .image-not-loaded {
+    min-height: 250px; }
+  .loading {
+    opacity: 1;
+    transition: opacity 1.2s ease; }
+  .loading.finished-loading {
+    opacity: 0; } }
+
+.image-loaded {
+  transition: opacity .1s linear;
+  opacity: 1; }
+
+.image-loaded.ng-hide {
+  opacity: 0;
+  visibility: hidden; }

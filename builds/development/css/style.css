@@ -430,4 +430,12 @@ rb-menu-group > li {
     left: 45%;
     font-size: 9em;
     position: absolute;
-    color: #edeff0; } }
+    color: #edeff0; }
+  .image-not-loaded {
+    min-height: 250px; }
+  .image-loaded {
+    transition: opacity .1s linear;
+    opacity: 1; }
+  .image-loaded.ng-hide {
+    opacity: 0;
+    visibility: hidden; } }
