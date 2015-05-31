@@ -51,6 +51,10 @@ angular.module('rbFramework')
   
     $scope.$on('rb-menu-orientation-changed-event', function(evt, data){
         $scope.isMenuVertical = data.isMenuVertical;
+        $timeout(function(){ 
+        determineViewWidth();
+      },20);
+        
     });
   
     $($window).on('resize.rbFramework', function(){
