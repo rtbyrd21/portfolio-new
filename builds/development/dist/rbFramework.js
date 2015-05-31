@@ -528,6 +528,207 @@ angular.module('app').directive('rbAbout', function(){
     }
   }
 });
+angular.module('rbMenu', ['ngAnimate']);
+
+angular.module('rbMenu').directive('rbMenuItem', function(){
+  return{
+    require: '^rbMenu',
+    scope:{
+      label: '@',
+      icon: '@',
+      route: '@'
+    },
+    templateUrl: 'ext-modules/rbMenu/rbMenuItemTemplate.html',
+    link: function(scope, el, attr, ctrl){
+      
+      scope.isActive = function(){
+        return el === ctrl.getActiveElement();
+      };
+      
+      scope.isVertical = function(){
+        return ctrl.isVertical() || el.parents('.subitem-section').length > 0;
+      }
+      
+      el.on('click', function(evt){
+        evt.stopPropagation();
+        evt.preventDefault();
+        scope.$apply(function(){
+          ctrl.setActiveElement(el);
+          ctrl.setRoute(scope.route, scope.label);
+        });
+      });
+    }
+  };
+});
+
+angular.module('rbMenu').directive('rbMenuGroup', function(){
+  return{
+      require: '^rbMenu',
+      transclude: true,
+      scope:{
+        label: '@',
+        icon: '@',
+        route: '@'
+      },
+      templateUrl: 'ext-modules/rbMenu/rbMenuGroupTemplate.html',
+      link: function(scope, el, attrs, ctrl){
+        
+          isVertical = true;
+          
+          scope.isOpen = false;
+        
+          scope.closeMenu = function(){
+            scope.isOpen = false;
+          };
+        
+        
+          scope.$on('rb-menu-orientation-changed-event', function(evt, data){
+            isVertical = data.isMenuVertical;
+          });
+        
+        
+          scope.clicked = function(){
+            
+            scope.isOpen = !scope.isOpen;
+            
+            
+            
+            if(!isVertical){
+            if(this.$$nextSibling){
+            if(this.$$nextSibling.isOpen){
+              this.$$nextSibling.isOpen = false;
+              this.isOpen = true;
+            };
+            };
+            if(this.$$prevSibling){
+            if(this.$$prevSibling.isOpen){
+              this.$$prevSibling.isOpen = false;
+              this.isOpen = true;
+            };
+            };
+            }
+            
+            if(el.parents('.subitem-section').length == 0){
+                scope.setSubmenuPosition();
+            }
+            
+            ctrl.setOpenMenuScope(scope);
+            
+          };
+        
+          scope.isVertical = function(){
+            return ctrl.isVertical() || el.parents('.subitem-section').length > 0;
+          }
+          
+          scope.setSubmenuPosition = function(){
+            var pos = el.offset();
+            $('.subitem-section').css({'left':pos.left + 20, 'top':36});
+          };
+        
+        
+        
+      }
+  }
+});
+angular.module('rbMenu').directive('rbMenu', ["$timeout", "$window", function($timeout, $window){
+  return{
+    scope:{
+      
+    },
+    transclude: true,
+    templateUrl: 'ext-modules/rbMenu/rbMenuTemplate.html',
+    controller: 'rbMenuController',
+    link: function(scope, el, attr){
+      
+        var width = Math.max($($window).width(), $window.innerWidth);
+      
+        var item = el.find('.selectable-item:first');
+        $timeout(function(){
+          item.trigger('click');
+        }, 0);
+      
+        
+    }
+  };
+}]);
+
+angular.module('rbMenu').controller('rbMenuController', 
+["$scope", "$rootScope", "$location", "$window", "$timeout", function($scope, $rootScope, $location, $window, $timeout){
+  
+    var width = Math.max($($window).width(), $window.innerWidth);
+    
+    
+    $scope.openMenuScope = null;
+    $scope.isVertical = true;
+  
+  
+    
+//     if(width >= 768){
+//      $scope.showMenu = true;
+//     }else{
+//       $scope.showMenu = false; 
+//     };
+  
+    this.getActiveElement = function(){
+        return $scope.activeElement;
+    };
+  
+    
+  
+    this.setActiveElement = function(el){
+        $scope.activeElement = el;
+        
+    };   
+  
+    this.isVertical = function(){
+        return $scope.isVertical;
+    }
+    
+    this.setRoute = function(route, label){
+        $rootScope.$broadcast('menu-item-selected-event',
+              {route: route,
+              title: label});
+    };
+  
+  
+    this.setOpenMenuScope = function(scope){
+        $scope.openMenuScope = scope;
+    }
+  
+    $scope.toggleMenuOrientation = function(){
+        
+        if($scope.openMenuScope){
+            $scope.openMenuScope.closeMenu();
+        }
+        
+        $scope.isVertical = !$scope.isVertical;
+        $rootScope.$broadcast('rb-menu-orientation-changed-event',
+              {isMenuVertical: $scope.isVertical});
+    };
+  
+    angular.element(document).bind('click', function(e){
+      if($scope.openMenuScope && !$scope.isVertical){
+        if($(e.target).parent().hasClass('selectable-item')){
+          return;
+        }
+        $scope.$apply(function(){
+          $scope.openMenuScope.closeMenu();
+        });
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+  
+    $scope.$on('menu-show', function(evt, data){
+      $scope.showMenu = data.show;
+      $scope.isVertical = data.isVertical;
+      $scope.allowHorizontalToggle = data.allowHorizontalToggle;
+     
+    });
+  
+
+  
+}]);
 angular.module('rbFramework', ['rbMenu', 'rbDashboard']);
 
 angular.module('rbFramework').directive('rbFramework', function(){
@@ -660,215 +861,6 @@ angular.module('rbFramework')
       broadcastMenuState();
     },0);
   
-  
-}]);
-angular.module('rbMenu', ['ngAnimate']);
-
-angular.module('rbMenu').directive('rbMenuItem', function(){
-  return{
-    require: '^rbMenu',
-    scope:{
-      label: '@',
-      icon: '@',
-      route: '@'
-    },
-    templateUrl: 'ext-modules/rbMenu/rbMenuItemTemplate.html',
-    link: function(scope, el, attr, ctrl){
-      
-      scope.isActive = function(){
-        return el === ctrl.getActiveElement();
-      };
-      
-      scope.isVertical = function(){
-        return ctrl.isVertical() || el.parents('.subitem-section').length > 0;
-      }
-      
-      el.on('click', function(evt){
-        evt.stopPropagation();
-        evt.preventDefault();
-        scope.$apply(function(){
-          ctrl.setActiveElement(el);
-          ctrl.setRoute(scope.route, scope.label);
-        });
-      });
-    }
-  };
-});
-
-angular.module('rbMenu').directive('rbMenuGroup', function(){
-  return{
-      require: '^rbMenu',
-      transclude: true,
-      scope:{
-        label: '@',
-        icon: '@',
-        route: '@'
-      },
-      templateUrl: 'ext-modules/rbMenu/rbMenuGroupTemplate.html',
-      link: function(scope, el, attrs, ctrl){
-        
-          isVertical = true;
-          
-          scope.isOpen = false;
-        
-          scope.closeMenu = function(){
-            scope.isOpen = false;
-          };
-        
-        
-          scope.$on('rb-menu-orientation-changed-event', function(evt, data){
-            isVertical = data.isMenuVertical;
-          });
-        
-        
-          scope.clicked = function(){
-            
-            scope.isOpen = !scope.isOpen;
-            
-            
-            
-            if(!isVertical){
-            if(this.$$nextSibling){
-            if(this.$$nextSibling.isOpen){
-              this.$$nextSibling.isOpen = false;
-              this.isOpen = true;
-            };
-            };
-            if(this.$$prevSibling){
-            if(this.$$prevSibling.isOpen){
-              this.$$prevSibling.isOpen = false;
-              this.isOpen = true;
-            };
-            };
-            }
-            
-            if(el.parents('.subitem-section').length == 0){
-                scope.setSubmenuPosition();
-            }
-            
-            ctrl.setOpenMenuScope(scope);
-            
-          };
-        
-          scope.isVertical = function(){
-            return ctrl.isVertical() || el.parents('.subitem-section').length > 0;
-          }
-          
-          scope.setSubmenuPosition = function(){
-            var pos = el.offset();
-            $('.subitem-section').css({'left':pos.left + 20, 'top':36});
-          };
-        
-        
-        
-      }
-  }
-});
-angular.module('rbMenu').directive('rbMenu', ["$timeout", "$window", function($timeout, $window){
-  return{
-    scope:{
-      
-    },
-    transclude: true,
-    templateUrl: 'ext-modules/rbMenu/rbMenuTemplate.html',
-    controller: 'rbMenuController',
-    link: function(scope, el, attr){
-      
-        var width = Math.max($($window).width(), $window.innerWidth);
-      
-        var item = el.find('.selectable-item:first');
-        $timeout(function(){
-          item.trigger('click');
-        }, 0);
-      
-        if(width >= 768 && !scope.isVertical){
-          console.log('ok');
-        }
-    }
-  };
-}]);
-
-angular.module('rbMenu').controller('rbMenuController', 
-["$scope", "$rootScope", "$location", "$window", "$timeout", function($scope, $rootScope, $location, $window, $timeout){
-  
-    var width = Math.max($($window).width(), $window.innerWidth);
-    
-    
-    $scope.openMenuScope = null;
-    $scope.isVertical = true;
-  
-  
-    
-     if(width >= 768){
-      $scope.showMenu = true;
-     }else{
-       $scope.showMenu = false; 
-     };
-  
-    this.getActiveElement = function(){
-        return $scope.activeElement;
-    };
-  
-    $($window).on('resize.rbMenu', function(){
-      $timeout(function(){
-        if(width < 769){
-        $scope.isVertical = true;
-        }
-      }, 10);
-    });
-  
-    this.setActiveElement = function(el){
-        $scope.activeElement = el;
-        
-    };   
-  
-    this.isVertical = function(){
-        return $scope.isVertical;
-    }
-    
-    this.setRoute = function(route, label){
-        $rootScope.$broadcast('menu-item-selected-event',
-              {route: route,
-              title: label});
-    };
-  
-  
-    this.setOpenMenuScope = function(scope){
-        $scope.openMenuScope = scope;
-    }
-  
-    $scope.toggleMenuOrientation = function(){
-        
-        if($scope.openMenuScope){
-            $scope.openMenuScope.closeMenu();
-        }
-        
-        $scope.isVertical = !$scope.isVertical;
-        $rootScope.$broadcast('rb-menu-orientation-changed-event',
-              {isMenuVertical: $scope.isVertical});
-    };
-  
-    angular.element(document).bind('click', function(e){
-      if($scope.openMenuScope && !$scope.isVertical){
-        if($(e.target).parent().hasClass('selectable-item')){
-          return;
-        }
-        $scope.$apply(function(){
-          $scope.openMenuScope.closeMenu();
-        });
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    });
-  
-    $scope.$on('menu-show', function(evt, data){
-      $scope.showMenu = data.show;
-      $scope.isVertical = data.isVertical;
-      $scope.allowHorizontalToggle = data.allowHorizontalToggle;
-     
-    });
-  
-
   
 }]);
 angular.module('rbDashboard', []);
