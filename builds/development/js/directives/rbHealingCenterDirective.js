@@ -1,5 +1,5 @@
 
-angular.module('app').directive('rbHealingCenter', function(){
+angular.module('app').directive('rbHealingCenter', function($timeout){
   return{
     scope:{
       image: '@'
@@ -7,28 +7,43 @@ angular.module('app').directive('rbHealingCenter', function(){
     templateUrl: 'js/directives/directiveTemplates/healingCenter.html',
     link: function(scope, el, attr, ctrl){
       scope.device = 'desktop';
+      scope.isLoaded = false;
       
       scope.isDesktop = function(){
+        scope.isLoaded = false;
         scope.device = 'desktop';
       };
       
+      scope.imageLoad = function(){
+//        console.log('loaded');
+//        $timeout(function(){
+              scope.isLoaded = true;
+//          },0);
+        
+      }
+      
       scope.isDesktopTwo = function(){
+        scope.isLoaded = false;
         scope.device = 'desktop-two';
       };
       
       scope.isTablet = function(){
+        scope.isLoaded = false;
         scope.device = 'tablet';
       };
       
       scope.isPhone = function(){
+        scope.isLoaded = false;
         scope.device = 'phone';
       };
       
       scope.isAdminOne = function(){
+        scope.isLoaded = false;
         scope.device = 'admin-one';
       };
       
       scope.isAdminTwo = function(){
+        scope.isLoaded = false;
         scope.device = 'admin-two';
       };
       
@@ -37,6 +52,7 @@ angular.module('app').directive('rbHealingCenter', function(){
       };
       
       scope.isAdminFour = function(){
+        scope.isLoaded = false;
         scope.device = 'admin-four';
       };
      

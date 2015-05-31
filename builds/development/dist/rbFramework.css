@@ -313,8 +313,11 @@ rb-menu-group > li {
 
 .device-selection {
   display: flex;
+  display: -webkit-flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-justify-content: center; }
   .device-selection button {
     margin-right: 15px;
     margin-bottom: 10px;
@@ -361,7 +364,9 @@ rb-menu-group > li {
 .gallery {
   font-size: 0;
   display: flex;
+  display: -webkit-flex;
   flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
   margin-left: 20px;
   margin-right: 20px; }
 
@@ -419,3 +424,12 @@ rb-menu-group > li {
 
 .slide.ng-leave-active {
   left: -100%; }
+
+@media screen and (min-width: 430px) {
+  .fa-3x {
+    left: 45%;
+    font-size: 9em;
+    position: absolute;
+    color: #edeff0; }
+  .image-loader {
+    min-height: 250px; } }

@@ -410,8 +410,11 @@ rb-menu-group > li{
 
 .device-selection{
   display: flex;
+  display:-webkit-flex;
   align-items: center;
   justify-content: center;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
   button{
     margin-right:15px;
     margin-bottom: 10px;
@@ -478,12 +481,15 @@ background-color: lighten($sand,10);
 .gallery { 
   font-size: 0; 
   display: flex; 
+  display:-webkit-flex;
   flex-flow: row wrap; 
+  -webkit-flex-flow: row wrap;
   margin-left: 20px;
   margin-right:20px;
 }
 .gallery > * { 
   flex: auto; 
+  
   width: 100px; 
   margin-right: 30px;
   @media screen and (min-width: 430px){
@@ -547,3 +553,23 @@ background-color: lighten($sand,10);
 .slide.ng-leave-active {
     left: -100%;
 }
+
+
+@media screen and (min-width: 430px){
+.fa-3x{
+left: 45%;
+  font-size: 9em;
+  position: absolute;
+  color:$lightgrey;
+}
+
+//  .loading{
+//  opacity: 1;
+//  transition: opacity 1.2s ease;
+//  }
+//
+//  .loading.finished-loading{
+//  opacity: 0;
+//  }
+}
+

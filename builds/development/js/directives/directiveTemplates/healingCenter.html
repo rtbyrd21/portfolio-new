@@ -5,10 +5,19 @@
 
 
  <div class="display-images">
-  <img ng-src="https://vineyardsandbox.s3.amazonaws.com/Rob/healing-center/{{device}}.png"/>
+ 
+ <div ng-show="!isLoaded" class="image-loader">
+  <i class="fa fa-refresh fa-3x fa-spin"></i>
+</div>  
+ 
+ <div ng-show="isLoaded" class="image-loaded">
+  <img imageonload="imageLoad()" class="loading not-loaded image-loader" 
+  ng-src="https://vineyardsandbox.s3.amazonaws.com/Rob/healing-center/{{device}}.png"/>
+</div>  
+  
   <div class="device-selection">
      
-      <button class="btn" 
+      <button preserve-height class="btn" 
       ng-class="{'active': device === 'desktop'}"
       ng-click="isDesktop()">Desktop</button>
       
