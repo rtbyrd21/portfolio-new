@@ -164,10 +164,11 @@
     
     
     <h3>CMS</h3>
-    <p>The custom CMS has been a huge success. To quote a Healing Center volunteer, "Wow this is really easy to use!" Using desciptive placeholder text as well as<a href="https://github.com/CodeSeven/toastr"> "Toastr.js" notifications</a> helps users know with confidence when a change has succesfully been made. Red and green go a long way, initially an edit button colored red threw a user off, "It looks like the delete button," they said. Keeping in mind that there are colors which are intuitive to users as positive and negative can help guide the user through the interface.</p>
+    <p>The custom CMS has been a huge success. To quote a Healing Center volunteer, "Wow this is really easy to use!" Using desciptive placeholder text as well as <a href="https://github.com/CodeSeven/toastr">"Toastr.js" notifications</a> helps users know with confidence when a change has succesfully been made. Red and green go a long way, initially an edit button colored red threw a user off, "It looks like the delete button," they said. Keeping in mind that there are colors which are intuitive to users as positive and negative can help guide the user through the interface.</p>
     
     <h3>English to Spanish</h3>
     <p>A feature which the Healing Center was very excited about incorporating was an English to Spanish toggle. This seemed like a lofty proposition, but as my confidence in Angular.js and REST API's grew, I realized a solution. The toggle would set a cookie on the browser to true or false. If true (for Spanish), a call stack of functions would execute, one of which would append a "sp" to the API url of all HTTP calls. In the back-end the English API was duplicated, with "sp" appended to each of them. The user flow would now be exactly they same and thanks to Angular's two way binding, the transition was seemless, without any delay or page refresh to the user. The trasition also works seemlessly on the back-end. A caveat to this logic is that the Spanish and English records for each entry must share a url, for example: /about/missions-and-values would pull do a GET request to api/about for english and api/about-sp for Spanish. The only duplicate content between each record is the url "/about/missions-and-values". This allows for looping through content and pulling back the Spanish record that has the mathcing URL on toggle.</p>
+  <p>This feature is currently hidden from the user until the Healing Center is able to translate the Spanish content.</p>
     
     
     

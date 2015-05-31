@@ -4,10 +4,24 @@ html {
   overflow-x: hidden; }
 
 body {
-  background: #d4d9dd;
+  background: white;
   font-family: "museo-slab",serif;
   margin: 0px !important;
   overflow-x: hidden; }
+
+a {
+  color: #5dc5e2;
+  text-decoration: none;
+  transition: color 0.15s ease; }
+  a:hover {
+    color: #5dc5e2;
+    text-decoration: none;
+    border-bottom: 3px solid #EFC94C; }
+  a.btn:hover {
+    border-bottom: 0px; }
+
+.btn {
+  transition: all 0.5s ease; }
 
 html, body {
   max-width: 100%;
@@ -187,9 +201,11 @@ rb-menu-group > li {
   padding-left: 16px;
   font-size: .9em; }
 
-.selectable-item:hover {
-  background-color: rgba(93, 197, 226, 0.7);
-  color: white; }
+.selectable-item {
+  transition: all 0.25s; }
+  .selectable-item:hover {
+    background-color: rgba(93, 197, 226, 0.7);
+    color: white; }
 
 .menu-icon {
   margin-right: 10px; }
@@ -303,6 +319,8 @@ rb-menu-group > li {
       box-shadow: none;
       background-color: #5dc5e2;
       color: white; }
+  .device-selection a:hover {
+    border-bottom: 0px !important; }
 
 .subHead h1 {
   border-bottom: 6px solid rgba(239, 201, 76, 0.7);
@@ -367,3 +385,29 @@ rb-menu-group > li {
   float: right; }
   .bubble-image img {
     border-radius: 50%; }
+
+iframe {
+  width: 100%; }
+
+.slide {
+  position: absolute;
+  left: 0;
+  top: 76;
+  width: 100%;
+  z-index: 0; }
+
+.slide.ng-enter, .slide.ng-leave {
+  -webkit-transition: left .5s ease;
+  transition: left .5s ease; }
+
+.slide.ng-enter {
+  left: 100%; }
+
+.slide.ng-enter-active {
+  left: 0; }
+
+.slide.ng-leave {
+  left: 0; }
+
+.slide.ng-leave-active {
+  left: -100%; }

@@ -22,7 +22,7 @@ angular.module('rbFramework')
   
     $scope.$on('$locationChangeSuccess', function(){
       viewLoaded = true;  
-      
+      determineViewWidth();
      $timeout(function(){ 
         if($location.$$url === '/about'){
           $scope.aboutActive = true;
@@ -33,15 +33,18 @@ angular.module('rbFramework')
       
       $timeout(function(){ 
         $('.menu-area-vertical').css('height', $('.view').height() + 40)
-      },120);  
+      },920);  
       
       
     });
+    
 
     if(!viewLoaded){
         $route.reload();  
     }
     
+    
+  
   
     $scope.$on('rb-menu-orientation-changed-event', function(evt, data){
         $scope.isMenuVertical = data.isMenuVertical;
@@ -51,7 +54,8 @@ angular.module('rbFramework')
       $scope.$apply(function(){
         checkWidth();
         broadcastMenuState();
-        broadcastMobileState();
+        determineViewWidth();
+//        broadcastMobileState();
       });
     });
   
@@ -72,12 +76,7 @@ angular.module('rbFramework')
       broadcastMenuState();
     }
     
-//    var broadcastMobileState = function(){
-//      $rootScope.$broadcast('mobile-state',
-//                {
-//          isMobile: $scope.isMobile
-//        });
-//    };
+
     
     var broadcastMenuState = function(){
       $rootScope.$broadcast('menu-show', 
@@ -87,11 +86,27 @@ angular.module('rbFramework')
           allowHorizontalToggle: !$scope.isMenuButtonVisible
         });
     }
+    
+    
+     var determineViewWidth = function(){ 
+       
+      $timeout(function(){
+        
+        var menuWidth = ($('.menu-area-vertical').outerWidth() / $('body').width()) * 100;
+        var viewWidth = 100;
+        if(Math.max($($window).width(), $window.innerWidth) >= 768){
+        $('.view').css('width', ((viewWidth - menuWidth) + '%'));
+        }else{
+        $('.view').css('width', ((viewWidth) + '%'));
+        }
+      },1);
+      }
 
+     determineViewWidth();
+     
     $timeout(function(){
       checkWidth();
       broadcastMenuState();
-//      broadcastMobileState();
     },0);
   
   
