@@ -20,9 +20,9 @@ angular.module('rbMenu').directive('rbMenuGroup', function(){
           };
         
         
-          scope.$on('rb-menu-orientation-changed-event', function(evt, data){
-            isVertical = data.isMenuVertical;
-          });
+//          scope.$on('rb-menu-orientation-changed-event', function(evt, data){
+//            isVertical = data.isMenuVertical;
+//          });
         
         
           scope.clicked = function(){
@@ -31,20 +31,20 @@ angular.module('rbMenu').directive('rbMenuGroup', function(){
             
             
             
-            if(!isVertical){
-            if(this.$$nextSibling){
-            if(this.$$nextSibling.isOpen){
-              this.$$nextSibling.isOpen = false;
-              this.isOpen = true;
-            };
-            };
-            if(this.$$prevSibling){
-            if(this.$$prevSibling.isOpen){
-              this.$$prevSibling.isOpen = false;
-              this.isOpen = true;
-            };
-            };
-            }
+//            if(!isVertical){
+//            if(this.$$nextSibling){
+//            if(this.$$nextSibling.isOpen){
+//              this.$$nextSibling.isOpen = false;
+//              this.isOpen = true;
+//            };
+//            };
+//            if(this.$$prevSibling){
+//            if(this.$$prevSibling.isOpen){
+//              this.$$prevSibling.isOpen = false;
+//              this.isOpen = true;
+//            };
+//            };
+//            }
             
             if(el.parents('.subitem-section').length == 0){
                 scope.setSubmenuPosition();
