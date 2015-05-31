@@ -528,6 +528,140 @@ angular.module('app').directive('rbAbout', function(){
     }
   }
 });
+angular.module('rbFramework', ['rbMenu', 'rbDashboard']);
+
+angular.module('rbFramework').directive('rbFramework', function(){
+  return {
+    transclude: true,
+    scope: {
+      title: '@',
+      subtitle: '@',
+      iconFile: '@'
+    },
+    controller: 'rbFrameworkController',
+    templateUrl: 'ext-modules/rbFramework/rbFrameworkTemplate.html'
+  };
+});
+
+angular.module('rbFramework')
+.controller('rbFrameworkController', ["$scope", "$rootScope", "$window", "$timeout", "$location", "$routeParams", "$route", function($scope, $rootScope, $window, $timeout, $location, $routeParams, $route){
+  
+    $scope.isMenuVisible = true;
+    $scope.isMenuButtonVisible = true;
+    $scope.isMenuVertical = true;
+    $scope.allowHorizontalToggle = true;
+    $scope.aboutActive = true;
+    $scope.isMobile = true;
+  
+    $scope.$on('menu-item-selected-event', function(evt, data){
+        $scope.routeString = data.route;
+        $scope.routeTitle = data.title;
+        $location.path(data.route);
+        checkWidth();
+        broadcastMenuState();
+    });
+    
+    var viewLoaded = false;
+    var url = $location.$$url;
+  
+    $scope.$on('$locationChangeSuccess', function(){
+      viewLoaded = true;
+      setMenuTop();
+      determineViewWidth();
+     $timeout(function(){ 
+        if($location.$$url === '/about'){
+          $scope.aboutActive = true;
+        }else{
+          $scope.aboutActive = undefined;
+        }
+      },10);  
+      
+      $timeout(function(){ 
+        $('.menu-area-vertical').css('height', $('.view').height() + 40)
+      },920);  
+      
+      
+    });
+    
+
+    if(!viewLoaded){
+        $route.reload();  
+    }
+    
+    
+  var setMenuTop = function(){
+    $('rb-menu').css('top', $('.logo-area').height());
+  }
+  
+    $scope.$on('rb-menu-orientation-changed-event', function(evt, data){
+        $scope.isMenuVertical = data.isMenuVertical;
+    });
+  
+    $($window).on('resize.rbFramework', function(){
+      $scope.$apply(function(){
+        checkWidth();
+        broadcastMenuState();
+        determineViewWidth();
+        setMenuTop();
+      });
+    });
+  
+    
+    $scope.$on('$destroy', function(){
+      $($window).off('resize.rbFramework'); //remove the handler
+    })
+    
+    var checkWidth = function(){
+      var width = Math.max($($window).width(), $window.innerWidth);
+      $scope.isMenuVisible = (width >= 768);
+      $scope.isMenuButtonVisible = !$scope.isMenuVisible;
+      $scope.isMobile = (width <= 460);
+    };
+  
+    $scope.menuButtonClicked = function(){
+      $scope.isMenuVisible = !$scope.isMenuVisible;
+      broadcastMenuState();
+    }
+    
+
+    
+    var broadcastMenuState = function(){
+      $rootScope.$broadcast('menu-show', 
+        {
+          show: $scope.isMenuVisible,
+          isVertical: $scope.isMenuVertical,
+          allowHorizontalToggle: !$scope.isMenuButtonVisible
+        });
+    }
+    
+    
+     var determineViewWidth = function(){ 
+       
+      $timeout(function(){
+        
+        var menuWidth = ($('.menu-area-vertical').outerWidth() / $('body').width()) * 100;
+        var viewWidth = 100;
+        if(Math.max($($window).width(), $window.innerWidth) >= 768){
+        $('.view').css('width', ((viewWidth - menuWidth) + '%'));
+        }else{
+        $('.view').css('width', ((viewWidth) + '%'));
+        }
+      },25);
+      }
+
+     $scope.$on('rb-menu-orientation-changed-event', function(evt, data){
+      determineViewWidth();
+    });
+     
+     determineViewWidth();
+     
+    $timeout(function(){
+      checkWidth();
+      broadcastMenuState();
+    },0);
+  
+  
+}]);
 angular.module('rbMenu', ['ngAnimate']);
 
 angular.module('rbMenu').directive('rbMenuItem', function(){
@@ -572,14 +706,41 @@ angular.module('rbMenu').directive('rbMenuGroup', function(){
       },
       templateUrl: 'ext-modules/rbMenu/rbMenuGroupTemplate.html',
       link: function(scope, el, attrs, ctrl){
+        
+          isVertical = true;
+          
           scope.isOpen = false;
         
           scope.closeMenu = function(){
             scope.isOpen = false;
           };
         
+        
+          scope.$on('rb-menu-orientation-changed-event', function(evt, data){
+            isVertical = data.isMenuVertical;
+          });
+        
+        
           scope.clicked = function(){
+            
             scope.isOpen = !scope.isOpen;
+            
+            
+            
+            if(!isVertical){
+            if(this.$$nextSibling){
+            if(this.$$nextSibling.isOpen){
+              this.$$nextSibling.isOpen = false;
+              this.isOpen = true;
+            };
+            };
+            if(this.$$prevSibling){
+            if(this.$$prevSibling.isOpen){
+              this.$$prevSibling.isOpen = false;
+              this.isOpen = true;
+            };
+            };
+            }
             
             if(el.parents('.subitem-section').length == 0){
                 scope.setSubmenuPosition();
@@ -603,7 +764,7 @@ angular.module('rbMenu').directive('rbMenuGroup', function(){
       }
   }
 });
-angular.module('rbMenu').directive('rbMenu', ["$timeout", function($timeout){
+angular.module('rbMenu').directive('rbMenu', ["$timeout", "$window", function($timeout, $window){
   return{
     scope:{
       
@@ -612,16 +773,23 @@ angular.module('rbMenu').directive('rbMenu', ["$timeout", function($timeout){
     templateUrl: 'ext-modules/rbMenu/rbMenuTemplate.html',
     controller: 'rbMenuController',
     link: function(scope, el, attr){
+      
+        var width = Math.max($($window).width(), $window.innerWidth);
+      
         var item = el.find('.selectable-item:first');
         $timeout(function(){
           item.trigger('click');
         }, 0);
+      
+        if(width >= 768 && !scope.isVertical){
+          console.log('ok');
+        }
     }
   };
 }]);
 
 angular.module('rbMenu').controller('rbMenuController', 
-["$scope", "$rootScope", "$location", "$window", function($scope, $rootScope, $location, $window){
+["$scope", "$rootScope", "$location", "$window", "$timeout", function($scope, $rootScope, $location, $window, $timeout){
   
     var width = Math.max($($window).width(), $window.innerWidth);
     
@@ -632,16 +800,22 @@ angular.module('rbMenu').controller('rbMenuController',
   
     
      if(width >= 768){
-      $scope.showMenu = true; 
+      $scope.showMenu = true;
      }else{
-       $scope.showMenu = false;
+       $scope.showMenu = false; 
      };
   
     this.getActiveElement = function(){
         return $scope.activeElement;
     };
   
-    
+    $($window).on('resize.rbMenu', function(){
+      $timeout(function(){
+        if(width < 769){
+        $scope.isVertical = true;
+        }
+      }, 10);
+    });
   
     this.setActiveElement = function(el){
         $scope.activeElement = el;
@@ -691,136 +865,10 @@ angular.module('rbMenu').controller('rbMenuController',
       $scope.showMenu = data.show;
       $scope.isVertical = data.isVertical;
       $scope.allowHorizontalToggle = data.allowHorizontalToggle;
-    });
-  
-
-  
-}]);
-angular.module('rbFramework', ['rbMenu', 'rbDashboard']);
-
-angular.module('rbFramework').directive('rbFramework', function(){
-  return {
-    transclude: true,
-    scope: {
-      title: '@',
-      subtitle: '@',
-      iconFile: '@'
-    },
-    controller: 'rbFrameworkController',
-    templateUrl: 'ext-modules/rbFramework/rbFrameworkTemplate.html'
-  };
-});
-
-angular.module('rbFramework')
-.controller('rbFrameworkController', ["$scope", "$rootScope", "$window", "$timeout", "$location", "$routeParams", "$route", function($scope, $rootScope, $window, $timeout, $location, $routeParams, $route){
-  
-    $scope.isMenuVisible = true;
-    $scope.isMenuButtonVisible = true;
-    $scope.isMenuVertical = true;
-    $scope.allowHorizontalToggle = true;
-    $scope.aboutActive = true;
-    $scope.isMobile = true;
-  
-    $scope.$on('menu-item-selected-event', function(evt, data){
-        $scope.routeString = data.route;
-        $scope.routeTitle = data.title;
-        $location.path(data.route);
-        checkWidth();
-        broadcastMenuState();
-    });
-    
-    var viewLoaded = false;
-    var url = $location.$$url;
-  
-    $scope.$on('$locationChangeSuccess', function(){
-      viewLoaded = true;  
-      determineViewWidth();
-     $timeout(function(){ 
-        if($location.$$url === '/about'){
-          $scope.aboutActive = true;
-        }else{
-          $scope.aboutActive = undefined;
-        }
-      },10);  
-      
-      $timeout(function(){ 
-        $('.menu-area-vertical').css('height', $('.view').height() + 40)
-      },420);  
-      
-      
-    });
-    
-
-    if(!viewLoaded){
-        $route.reload();  
-    }
-    
-    
-  
-  
-    $scope.$on('rb-menu-orientation-changed-event', function(evt, data){
-        $scope.isMenuVertical = data.isMenuVertical;
-    });
-  
-    $($window).on('resize.rbFramework', function(){
-      $scope.$apply(function(){
-        checkWidth();
-        broadcastMenuState();
-        determineViewWidth();
-//        broadcastMobileState();
-      });
-    });
-  
-    
-    $scope.$on('$destroy', function(){
-      $($window).off('resize.rbFramework'); //remove the handler
-    })
-    
-    var checkWidth = function(){
-      var width = Math.max($($window).width(), $window.innerWidth);
-      $scope.isMenuVisible = (width >= 768);
-      $scope.isMenuButtonVisible = !$scope.isMenuVisible;
-      $scope.isMobile = (width <= 460);
-    };
-  
-    $scope.menuButtonClicked = function(){
-      $scope.isMenuVisible = !$scope.isMenuVisible;
-      broadcastMenuState();
-    }
-    
-
-    
-    var broadcastMenuState = function(){
-      $rootScope.$broadcast('menu-show', 
-        {
-          show: $scope.isMenuVisible,
-          isVertical: $scope.isMenuVertical,
-          allowHorizontalToggle: !$scope.isMenuButtonVisible
-        });
-    }
-    
-    
-     var determineViewWidth = function(){ 
-       
-      $timeout(function(){
-        
-        var menuWidth = ($('.menu-area-vertical').outerWidth() / $('body').width()) * 100;
-        var viewWidth = 100;
-        if(Math.max($($window).width(), $window.innerWidth) >= 768){
-        $('.view').css('width', ((viewWidth - menuWidth) + '%'));
-        }else{
-        $('.view').css('width', ((viewWidth) + '%'));
-        }
-      },1);
-      }
-
-     determineViewWidth();
      
-    $timeout(function(){
-      checkWidth();
-      broadcastMenuState();
-    },0);
+    });
   
+
   
 }]);
 angular.module('rbDashboard', []);

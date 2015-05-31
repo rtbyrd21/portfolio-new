@@ -1,6 +1,6 @@
 
 angular.module('rbMenu').controller('rbMenuController', 
-function($scope, $rootScope, $location, $window){
+function($scope, $rootScope, $location, $window, $timeout){
   
     var width = Math.max($($window).width(), $window.innerWidth);
     
@@ -11,9 +11,9 @@ function($scope, $rootScope, $location, $window){
   
     
      if(width >= 768){
-      $scope.showMenu = true; 
+      $scope.showMenu = true;
      }else{
-       $scope.showMenu = false;
+       $scope.showMenu = false; 
      };
   
     this.getActiveElement = function(){
@@ -70,6 +70,7 @@ function($scope, $rootScope, $location, $window){
       $scope.showMenu = data.show;
       $scope.isVertical = data.isVertical;
       $scope.allowHorizontalToggle = data.allowHorizontalToggle;
+     
     });
   
 

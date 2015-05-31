@@ -21,7 +21,8 @@ angular.module('rbFramework')
     var url = $location.$$url;
   
     $scope.$on('$locationChangeSuccess', function(){
-      viewLoaded = true;  
+      viewLoaded = true;
+      setMenuTop();
       determineViewWidth();
      $timeout(function(){ 
         if($location.$$url === '/about'){
@@ -44,7 +45,9 @@ angular.module('rbFramework')
     }
     
     
-  
+  var setMenuTop = function(){
+    $('rb-menu').css('top', $('.logo-area').height());
+  }
   
     $scope.$on('rb-menu-orientation-changed-event', function(evt, data){
         $scope.isMenuVertical = data.isMenuVertical;
@@ -55,7 +58,7 @@ angular.module('rbFramework')
         checkWidth();
         broadcastMenuState();
         determineViewWidth();
-//        broadcastMobileState();
+        setMenuTop();
       });
     });
   
@@ -99,9 +102,13 @@ angular.module('rbFramework')
         }else{
         $('.view').css('width', ((viewWidth) + '%'));
         }
-      },1);
+      },25);
       }
 
+     $scope.$on('rb-menu-orientation-changed-event', function(evt, data){
+      determineViewWidth();
+    });
+     
      determineViewWidth();
      
     $timeout(function(){

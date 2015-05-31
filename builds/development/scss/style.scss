@@ -10,7 +10,9 @@ body{
   margin:0px !important;
   overflow-x: hidden;
 }
-
+h1{
+color:darken($darkgrey, 10);
+}
 a{
   color:$blue;
   text-decoration: none;
@@ -27,6 +29,7 @@ a{
   }
 }
 
+
 .btn{
   transition: all 0.5s ease;
 }
@@ -40,6 +43,7 @@ p{
   font-weight: 300;
   margin-left:20px;
   margin-right: 20px;
+  color:darken($darkgrey, 10);
 }
 
 @media screen and (max-width: 430px){
@@ -202,12 +206,16 @@ font-weight: 400;
 
 .menu-area{
   position: relative;
-  background-color: $lightgrey;
+  background-color: lighten($sand,10);
   color: $darkgrey;
   padding-left: 0;
 }
 rb-menu{
-position: inherit;
+//position: inherit;
+width: 100%;
+  position: absolute;
+  top: 76px;
+ 
 }
 
 @media screen and (max-width: 430px){
@@ -232,6 +240,7 @@ rb-menu-group > li{
 .menu-area-horizontal{
   width:100%;
   height: 40px;
+  padding-top: 5px;
 }
 
 .menu-area ul{
@@ -270,6 +279,9 @@ rb-menu-group > li{
   &:hover{
   background-color: rgba( $blue, .7 );
   color:white;
+    .menu-active-indicator{
+  color: lighten($sand,10);
+}
 }
 }
 
@@ -280,7 +292,7 @@ rb-menu-group > li{
 
 .menu-active-indicator{
   float: right;
-  color: white;
+  color: rgba( $blue, .7 );
   margin-right: 0;
   margin-top: 8px;
 }
@@ -293,7 +305,7 @@ rb-menu-group > li{
 
 .group-indicator-left{
   float: right;
-  color: white;
+  color: rgba( $blue, .7 );
   margin-right:2px;
   margin-top:15px;
 }
@@ -305,9 +317,9 @@ rb-menu-group > li{
 .menu-layout-button{
   margin:12px;
   padding:2px 8px;
-  color: $grey;
-  background-color: $darkgrey;
-  border: 1px solid $lightgrey;
+  color: white;
+  background-color: rgba( $blue, .7 );
+//  border: 1px solid white;
 }
 
 .layout-button-horizontal{
@@ -331,7 +343,7 @@ rb-menu-group > li{
 .popup-menu{
   position: absolute;
   z-index: 1000;
-  background-color: $lightgrey;
+  background-color: lighten($sand,10);
   width:230px;
   padding-left: 0;
 }
@@ -506,26 +518,23 @@ background-color: lighten($sand,10);
   }
 }
 
-iframe{
-  width: 100%;
-}
-
 .slide {
     position: absolute;
     left: 0;
-    top: 76;
+    top: 110px;
     width: 100%;
+    opacity: 1;
 //    height: 100%;
     z-index: 0;
 }
 .slide.ng-enter,
 .slide.ng-leave {
-    -webkit-transition: left .5s ease;
-    transition: left .5s ease;
+    -webkit-transition: left .5s ease, opacity 1.2s ease;
+    transition: left .5s ease, opacity 1.2s ease;
 }
 .slide.ng-enter {
     left: 100%;
-    opacity: 1;
+    opacity: 0;
 }
 .slide.ng-enter-active {
     left: 0;
