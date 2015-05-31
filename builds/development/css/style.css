@@ -165,7 +165,9 @@ rb-menu {
 
 @media screen and (max-width: 430px) {
   rb-menu {
-    position: static; } }
+    position: fixed;
+    height: 400px;
+    z-index: 999; } }
 
 rb-menu-group > li {
   text-transform: uppercase;
