@@ -211,18 +211,16 @@ font-weight: 400;
   padding-left: 0;
 }
 rb-menu{
-position: static;
+//position: inherit;
 width: 100%;
-//  position: absolute;
+  position: absolute;
   top: 76px;
  
 }
 
 @media screen and (max-width: 430px){
   rb-menu{
-  position: fixed;
-  height:400px;
-  z-index: 999;
+  position: absolute;
   }
 }
 
