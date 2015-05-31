@@ -57,7 +57,7 @@ angular.module('rbFramework')
       $scope.$apply(function(){
         checkWidth();
         broadcastMenuState();
-//        determineViewWidth();
+        determineViewWidth();
         setMenuTop();
       });
     });
@@ -109,7 +109,7 @@ angular.module('rbFramework')
       determineViewWidth();
     });
      
-//     determineViewWidth();
+     determineViewWidth();
      
     $timeout(function(){
       checkWidth();
