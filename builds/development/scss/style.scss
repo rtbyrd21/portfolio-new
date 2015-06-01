@@ -594,7 +594,21 @@ min-height: 250px;
 .image-viewer{
 max-height: 525px;
 overflow: hidden;
+} 
+  
+.subHead, .sidebar{
+  transition:opacity 2.5s ease;
+  opacity: 0;
+}
+  
+.subHead.not-in-view, .sidebar.not-in-view{
+  opacity: 0;
+}
+  
+.subHead.in-view, .sidebar.in-view{
+  opacity: 1;
 }  
+  
   
 }
 
