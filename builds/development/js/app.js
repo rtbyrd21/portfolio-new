@@ -90,42 +90,42 @@ angular.module('app', ['ngRoute', 'rbFramework'])
 
 
 
-.directive("scroll", function ($window, $parse) {
+.directive("scroll", function ($window) {
     return{
-    scope:{},
-    link: function (scope, element, attrs) {
- 
-        function getScrollOffsets(w) {
- 
-            // Use the specified window or the current window if no argument 
-            w = w || window;
- 
-            // This works for all browsers except IE versions 8 and before
-            if (w.pageXOffset != null) return {
-                x: w.pageXOffset,
-                y: w.pageYOffset
-            };
- 
-        }
- 
+    scope:true,
+    link: function (scope, el, attrs) {
+        function isElementInViewport (el) {
+
+          //special bonus for those using jQuery
+          if (typeof jQuery === "function" && el instanceof jQuery) {
+              el = el[0];
+          }
+          var height = $(el).height();
+          var rect = el.getBoundingClientRect();
+          
+          return (
+              rect.top >= -(height / 1.25) &&
+              rect.left >= 0 &&
+              rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)+ (height / 1.25) && /*or $(window).height() */
+              rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+          );
+          }
+
         angular.element($window).bind("scroll", function (e) {
-            var offset = getScrollOffsets($window);
-             if (offset.y >= 10) {
-                 e.preventDefault();
-                 e.stopPropagation();
-               
-                 element.removeClass('not-in-view');
-                 element.addClass('in-view');
-                 scope.boolChangeClass = true;
-             } else {
-                 e.preventDefault();
-                 e.stopPropagation();
-                 element.removeClass('in-view');
-                 element.addClass('not-in-view');
-                  scope.boolChangeClass = false;
-             }
-//            scope.$apply();
-        });
-    }
+
+           if (isElementInViewport(el)) {
+               e.preventDefault();
+               e.stopPropagation();
+               el.removeClass('not-in-view');
+               el.addClass('in-view');
+           } else {
+               e.preventDefault();
+               e.stopPropagation();
+               el.removeClass('in-view');
+               el.addClass('not-in-view');
+           }
+          scope.$apply();
+      });
+          }
 };
 })
