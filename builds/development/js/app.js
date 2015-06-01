@@ -35,17 +35,25 @@ angular.module('app', ['ngRoute', 'rbFramework'])
               
               
               var setHeight = function(){
-              $timeout(function(){
-                $('.image-not-loaded').css('height', $('.image-loaded').height());
-    },1000);
+                  $timeout(function(){
+                    $('.image-not-loaded').css('height', $('.image-loaded').height());
+                    $('.image-viewer').css('max-height', $('.image-viewer').height());
+                    console.log($('.image-viewer').height())
+                  },1000);
               }
               
-              setHeight();
+              
+              
               
                $($window).on('resize.preserveHeight', function(){
                     $('.image-loader').css('height', 'auto');
+                    $('.image-viewer').css('max-height', '100%');
                     setHeight();
                 });
+              
+              $timeout(function(){
+              setHeight();
+              },1000)
                 
             }
         };

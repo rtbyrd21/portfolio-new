@@ -554,6 +554,13 @@ background-color: lighten($sand,10);
     left: -100%;
 }
 
+@media screen and (max-width: 430px){
+.image-viewer{
+max-height: 300px;
+overflow: hidden;
+}  
+}
+
 
 @media screen and (min-width: 430px){
 .fa-3x{
@@ -576,12 +583,18 @@ min-height: 250px;
 //
 
 .image-loaded {
-    transition:opacity .1s linear;
+    transition:opacity .35s ease;
     opacity: 1;
 }
 .image-loaded.ng-hide {
     opacity: 0;
     visibility: hidden;
 }
+
+.image-viewer{
+max-height: 525px;
+overflow: hidden;
+}  
+  
 }
 

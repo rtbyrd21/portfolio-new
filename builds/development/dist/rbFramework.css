@@ -433,16 +433,9 @@ rb-menu-group > li {
     color: #edeff0; }
   .image-not-loaded {
     min-height: 250px; }
-  .loading {
-    opacity: 1;
-    transition: opacity 1.2s ease; }
-  .loading.finished-loading {
-    opacity: 0; } }
-
-.image-loaded {
-  transition: opacity .1s linear;
-  opacity: 1; }
-
-.image-loaded.ng-hide {
-  opacity: 0;
-  visibility: hidden; }
+  .image-loaded {
+    transition: opacity .1s linear;
+    opacity: 1; }
+  .image-loaded.ng-hide {
+    opacity: 0;
+    visibility: hidden; } }
