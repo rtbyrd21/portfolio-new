@@ -38,7 +38,6 @@ angular.module('app', ['ngRoute', 'rbFramework'])
                   $timeout(function(){
                     $('.image-not-loaded').css('height', $('.image-loaded').height());
                     $('.image-viewer').css('max-height', $('.image-viewer').height());
-                    console.log($('.image-viewer').height())
                   },1000);
               }
               
@@ -55,6 +54,14 @@ angular.module('app', ['ngRoute', 'rbFramework'])
               setHeight();
               },1000)
                 
+              
+              scope.$on('rb-menu-orientation-changed-event', function(evt, data){
+                $('.image-viewer').css('max-height', '100%');
+                    $('.image-loader').css('height', 'auto');
+                    $('.image-viewer').css('max-height', '100%');
+                    setHeight();
+              });
+              
             }
         };
     });
