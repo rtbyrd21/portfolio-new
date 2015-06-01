@@ -448,7 +448,7 @@ rb-menu-group > li {
     max-height: 525px;
     overflow: hidden; }
   .subHead, .sidebar {
-    transition: opacity 2.5s ease;
+    transition: opacity 1s ease;
     opacity: 0; }
   .subHead.not-in-view, .sidebar.not-in-view {
     opacity: 0; }
