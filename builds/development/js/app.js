@@ -65,10 +65,16 @@ angular.module('app', ['ngRoute', 'rbFramework'])
                 
               
               scope.$on('rb-menu-orientation-changed-event', function(evt, data){
+                    if(!data.isMenuVertical){
+                      $('.image-viewer').css('max-height', '130%');
+                    }else{
+                    
                    $('.image-viewer').css('max-height', '100%');
                     $('.image-loader').css('height', 'auto');
+                    console.log(data);
                     setImageViewerHeight();
                     setHeight();
+                    }
               });
               
               scope.$on('$locationChangeSuccess', function(evt, data){

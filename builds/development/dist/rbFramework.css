@@ -445,7 +445,7 @@ rb-menu-group > li {
     opacity: 0;
     visibility: hidden; }
   .image-viewer {
-    max-height: 525px;
+    max-height: 625px;
     overflow: hidden; }
   .subHead, .sidebar {
     transition: opacity 1s ease;
